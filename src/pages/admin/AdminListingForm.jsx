@@ -9,7 +9,7 @@ import ThemeToggle from '../../components/admin/ThemeToggle.jsx'
 import { useAdminTheme } from '../../lib/adminTheme.js'
 import './admin.css'
 
-const STATUS_OPTIONS = ['For Sale', 'For Rent', 'Under Offer', 'Sold', 'Leased']
+const STATUS_OPTIONS = ['For Sale', 'For Lease', 'Under Offer', 'Sold', 'Leased']
 
 const EMPTY = {
   slug: '',
