@@ -78,6 +78,7 @@ function AppShell() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/selling" element={<SellingPage />} />
               <Route path="/listings" element={<ListingsPage />} />
+              <Route path="/listings/:status" element={<ListingsPage />} />
               <Route path="/property-management" element={<PropertyManagementPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy" element={<LegalPage type="privacy" />} />

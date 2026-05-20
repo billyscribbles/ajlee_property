@@ -11,7 +11,16 @@ export const site = {
 
   nav: [
     { label: 'Home', to: '/' },
-    { label: 'Listings', to: '/listings' },
+    {
+      label: 'Listings',
+      to: '/listings',
+      children: [
+        { label: 'For Sale', to: '/listings/for-sale' },
+        { label: 'For Rent', to: '/listings/for-rent' },
+        { label: 'Sold', to: '/listings/sold' },
+        { label: 'Leased', to: '/listings/leased' },
+      ],
+    },
     { label: 'Selling', to: '/selling' },
     { label: 'Property Management', to: '/property-management' },
     { label: 'About Us', to: '/about' },
