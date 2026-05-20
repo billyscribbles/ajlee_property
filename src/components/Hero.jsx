@@ -6,15 +6,15 @@ import './Hero.css'
 export default function Hero() {
   return (
     <section className="hero" id="hero">
-      <div className="hero__media" aria-hidden="true">
+      <div className="hero__media">
         <img
           src={hero.image.src}
-          alt=""
+          alt={hero.image.alt}
           className="hero__image"
           loading="eager"
           fetchpriority="high"
         />
-        <div className="hero__media-veil" />
+        <div className="hero__media-veil" aria-hidden="true" />
       </div>
 
       <div className="hero__inner">

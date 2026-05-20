@@ -9,6 +9,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/brand/apple-touch-icon.png" />
     <meta name="theme-color" content="#0a0a0c" />
 
+    <!-- LCP image: hero skyline. Preload so it starts downloading before
+         the React app boots and the <img> tag is parsed. -->
+    <link rel="preload" as="image" href="/images/hero-skyline.webp" fetchpriority="high" />
+
     <!-- Self-hosted fonts. @font-face declarations live in src/fonts.css.
          Preload only the regular weights — the rest stream in on demand. -->
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
