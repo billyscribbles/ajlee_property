@@ -16,11 +16,24 @@ export default function PropertyManagementPage() {
     <main className="service-page">
       <SEO title="Property Management" path="/property-management" />
 
-      <section className="service-hero">
+      <section className="service-hero service-hero--with-media">
+        <div className="service-hero__media" aria-hidden="true">
+          <img
+            src="/images/home-bedroom.png"
+            alt=""
+            className="service-hero__image"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div className="service-hero__veil" />
+        </div>
+
         <div className="container service-hero__inner">
-          <span className="section-eyebrow service-hero__eyebrow">
-            {propertyManagement.eyebrow}
-          </span>
+          {propertyManagement.eyebrow && (
+            <span className="section-eyebrow service-hero__eyebrow">
+              {propertyManagement.eyebrow}
+            </span>
+          )}
           <h1 className="service-hero__title">
             {propertyManagement.title.split('\n').map((line) => (
               <span key={line} className="service-hero__title-line">
@@ -36,6 +49,9 @@ export default function PropertyManagementPage() {
         <div className="container service-intro__inner">
           <p className="service-intro__body">{propertyManagement.intro2}</p>
           <p className="service-intro__body">{propertyManagement.intro3}</p>
+          {propertyManagement.intro4 && (
+            <p className="service-intro__body">{propertyManagement.intro4}</p>
+          )}
           <p className="service-intro__promise">{propertyManagement.promise}</p>
         </div>
       </section>
@@ -45,13 +61,15 @@ export default function PropertyManagementPage() {
           <span className="section-eyebrow service-grid__eyebrow">
             {propertyManagement.whyLeaseEyebrow}
           </span>
-          <h2 className="service-grid__heading">
-            {propertyManagement.whyLeaseHeading.split('\n').map((line) => (
-              <span key={line} className="service-grid__heading-line">
-                {line}
-              </span>
-            ))}
-          </h2>
+          {propertyManagement.whyLeaseHeading && (
+            <h2 className="service-grid__heading">
+              {propertyManagement.whyLeaseHeading.split('\n').map((line) => (
+                <span key={line} className="service-grid__heading-line">
+                  {line}
+                </span>
+              ))}
+            </h2>
+          )}
           <div className="service-grid__list">
             {propertyManagement.services.map((s, i) => (
               <motion.article key={s.title} className="service-grid__card" {...scrollIn(i)}>
@@ -69,15 +87,19 @@ export default function PropertyManagementPage() {
       <section className="owner-portal section" aria-labelledby="owner-portal-heading">
         <div className="container owner-portal__inner">
           <div className="owner-portal__content">
-            <span className="section-eyebrow">{portal.eyebrow}</span>
-            <h2 id="owner-portal-heading" className="owner-portal__heading">
-              {portal.heading.split('\n').map((line) => (
-                <span key={line} className="owner-portal__heading-line">
-                  {line}
-                </span>
-              ))}
-            </h2>
-            <p className="owner-portal__body">{portal.body}</p>
+            <span id="owner-portal-heading" className="section-eyebrow">
+              {portal.eyebrow}
+            </span>
+            {portal.heading && (
+              <h2 className="owner-portal__heading">
+                {portal.heading.split('\n').map((line) => (
+                  <span key={line} className="owner-portal__heading-line">
+                    {line}
+                  </span>
+                ))}
+              </h2>
+            )}
+            {portal.body && <p className="owner-portal__body">{portal.body}</p>}
             <ul className="owner-portal__features">
               {portal.features.map((feature) => (
                 <li key={feature} className="owner-portal__feature">
@@ -88,14 +110,16 @@ export default function PropertyManagementPage() {
                 </li>
               ))}
             </ul>
-            <a
-              className="owner-portal__source"
-              href={portal.sourceHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {portal.sourceLabel} ↗
-            </a>
+            {portal.sourceLabel && portal.sourceHref && (
+              <a
+                className="owner-portal__source"
+                href={portal.sourceHref}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {portal.sourceLabel} ↗
+              </a>
+            )}
           </div>
 
           <motion.div
@@ -117,14 +141,18 @@ export default function PropertyManagementPage() {
 
       <section className="owner-guarantee section" aria-labelledby="owner-guarantee-heading">
         <div className="container">
-          <span className="section-eyebrow">{guarantee.eyebrow}</span>
-          <h2 id="owner-guarantee-heading" className="owner-guarantee__heading">
-            {guarantee.heading.split('\n').map((line) => (
-              <span key={line} className="owner-guarantee__heading-line">
-                {line}
-              </span>
-            ))}
-          </h2>
+          <span id="owner-guarantee-heading" className="section-eyebrow">
+            {guarantee.eyebrow}
+          </span>
+          {guarantee.heading && (
+            <h2 className="owner-guarantee__heading">
+              {guarantee.heading.split('\n').map((line) => (
+                <span key={line} className="owner-guarantee__heading-line">
+                  {line}
+                </span>
+              ))}
+            </h2>
+          )}
           <ul className="owner-guarantee__list">
             {guarantee.items.map((item, i) => (
               <motion.li key={item.title} className="owner-guarantee__item" {...scrollIn(i)}>
@@ -133,7 +161,7 @@ export default function PropertyManagementPage() {
                 </span>
                 <div>
                   <h3 className="owner-guarantee__title">{item.title}</h3>
-                  <p className="owner-guarantee__body">{item.body}</p>
+                  {item.body && <p className="owner-guarantee__body">{item.body}</p>}
                 </div>
               </motion.li>
             ))}
@@ -143,7 +171,12 @@ export default function PropertyManagementPage() {
 
       <Services />
       <Testimonials />
-      <CtaBanner />
+      <CtaBanner
+        image={{
+          src: '/images/home-spa-bathroom.png',
+          alt: 'Spa-style ensuite with freestanding tub, walk-in shower and palm garden view.',
+        }}
+      />
     </main>
   )
 }

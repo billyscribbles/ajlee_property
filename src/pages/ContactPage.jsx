@@ -1,14 +1,34 @@
 import SEO from '../lib/seo.jsx'
-import { site } from '../config/site.config.js'
 import Contact from '../components/Contact.jsx'
+import './ContactPage.css'
 
 export default function ContactPage() {
   return (
-    <main>
+    <main className="contact-page">
       <SEO title="Contact" path="/contact" />
-      {/* Page-level h1 — the Contact section's own heading is an h2 because
-          that component is also reused as a section on the home page. */}
-      <h1 className="sr-only">Contact {site.brand.name}</h1>
+
+      <section className="contact-hero">
+        <div className="contact-hero__media" aria-hidden="true">
+          <img
+            src="/images/home-poolside-lounge.png"
+            alt=""
+            className="contact-hero__image"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div className="contact-hero__veil" />
+        </div>
+
+        <div className="container contact-hero__inner">
+          <span className="section-eyebrow contact-hero__eyebrow">Get in touch</span>
+          <h1 className="contact-hero__title">A conversation, first.</h1>
+          <p className="contact-hero__intro">
+            Whether you&rsquo;re ready to list, leasing your investment, or simply curious about
+            what your property is worth — we&rsquo;d love to hear from you.
+          </p>
+        </div>
+      </section>
+
       <Contact />
     </main>
   )

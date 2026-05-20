@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import SEO from '../lib/seo.jsx'
 import Services from '../components/Services.jsx'
-import WhyChoose from '../components/WhyChoose.jsx'
 import Testimonials from '../components/Testimonials.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
 import { useScrollIn } from '../lib/motion.js'
@@ -15,7 +14,18 @@ export default function SellingPage() {
     <main className="service-page">
       <SEO title="Selling" path="/selling" />
 
-      <section className="service-hero">
+      <section className="service-hero service-hero--with-media">
+        <div className="service-hero__media" aria-hidden="true">
+          <img
+            src="/images/home-exterior-twilight.png"
+            alt=""
+            className="service-hero__image"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div className="service-hero__veil" />
+        </div>
+
         <div className="container service-hero__inner">
           <span className="section-eyebrow service-hero__eyebrow">{selling.eyebrow}</span>
           <h1 className="service-hero__title">
@@ -34,6 +44,36 @@ export default function SellingPage() {
           <p className="service-intro__body">{selling.intro2}</p>
           <p className="service-intro__body">{selling.intro3}</p>
           <p className="service-intro__promise">{selling.promise}</p>
+        </div>
+      </section>
+
+      <section className="service-showcase" aria-label="The homes we sell">
+        <div className="container">
+          <div className="service-showcase__grid">
+            <figure className="service-showcase__figure">
+              <img
+                src="/images/home-open-plan-living.png"
+                alt="Open-plan kitchen and living space with floor-to-ceiling glazing."
+                loading="lazy"
+                className="service-showcase__image"
+              />
+            </figure>
+            <figure className="service-showcase__figure">
+              <img
+                src="/images/home-kitchen-island.png"
+                alt="Walnut and marble kitchen island with brass pendants overhead."
+                loading="lazy"
+                className="service-showcase__image"
+              />
+            </figure>
+          </div>
+          <div className="service-showcase__copy">
+            <span className="section-eyebrow">Presentation matters</span>
+            <p className="service-showcase__lede">
+              Editorial-grade campaigns built around the rooms buyers fall for
+              &mdash; staged, photographed and launched to land hardest from day one.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -62,9 +102,13 @@ export default function SellingPage() {
       </section>
 
       <Services />
-      <WhyChoose />
       <Testimonials />
-      <CtaBanner />
+      <CtaBanner
+        image={{
+          src: '/images/home-walnut-kitchen.png',
+          alt: 'Designer walnut kitchen with marble waterfall island and brass pendants.',
+        }}
+      />
     </main>
   )
 }

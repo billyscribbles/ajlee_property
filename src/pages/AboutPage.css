@@ -4,11 +4,53 @@
 }
 
 .about-hero {
-  padding: 176px 0 80px;
+  position: relative;
+  padding: 200px 0 120px;
   background: var(--color-bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.about-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.about-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.95) saturate(1.02);
+}
+
+.about-hero__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(10, 10, 12, 0.95) 0%,
+      rgba(10, 10, 12, 0.82) 22%,
+      rgba(10, 10, 12, 0.55) 48%,
+      rgba(10, 10, 12, 0.25) 76%,
+      rgba(10, 10, 12, 0.1) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(10, 10, 12, 0.25) 0%,
+      transparent 30%,
+      transparent 60%,
+      var(--color-bg) 100%
+    );
 }
 
 .about-hero__inner {
+  position: relative;
+  z-index: 1;
   max-width: 1100px;
 }
 
@@ -31,11 +73,16 @@
   font-size: 17px;
   line-height: 1.75;
   color: var(--color-text-soft);
-  max-width: 720px;
-  margin-bottom: 72px;
+  max-width: 640px;
+  margin: 0;
 }
 
-.about-hero__pillars {
+.about-pillars {
+  padding: 80px 0 96px;
+  background: var(--color-bg);
+}
+
+.about-pillars__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 36px;
@@ -44,7 +91,7 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.about-hero__pillar-title {
+.about-pillars__pillar-title {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 500;
@@ -52,7 +99,7 @@
   margin: 0 0 8px;
 }
 
-.about-hero__pillar-body {
+.about-pillars__pillar-body {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.7;
@@ -60,14 +107,14 @@
   margin: 0;
 }
 
-.about-hero__stats {
+.about-pillars__stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 36px;
   padding-top: 56px;
 }
 
-.about-hero__stat-value {
+.about-pillars__stat-value {
   font-family: var(--font-display);
   font-size: 56px;
   font-weight: 400;
@@ -76,7 +123,7 @@
   margin-bottom: 8px;
 }
 
-.about-hero__stat-label {
+.about-pillars__stat-label {
   font-family: var(--font-body);
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -84,43 +131,102 @@
   color: var(--color-muted);
 }
 
+.about-showcase {
+  padding: 32px 0 96px;
+  background: var(--color-bg);
+}
+
+.about-showcase__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: end;
+}
+
+.about-showcase__figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  aspect-ratio: 4 / 3;
+}
+
+.about-showcase__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-showcase__copy {
+  max-width: 380px;
+  padding-bottom: 8px;
+}
+
+.about-showcase__lede {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 400;
+  line-height: 1.4;
+  color: #ffffff;
+  margin: 16px 0 0;
+}
+
 @media (max-width: 1024px) {
-  .about-hero__pillars,
-  .about-hero__stats {
+  .about-pillars__grid,
+  .about-pillars__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px;
   }
 }
 
+@media (max-width: 960px) {
+  .about-showcase__inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .about-showcase__copy {
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .about-hero {
-    padding: 136px 0 56px;
+    padding: 144px 0 72px;
   }
-  .about-hero__intro {
-    margin-bottom: 48px;
+  .about-pillars {
+    padding: 56px 0 72px;
   }
-  .about-hero__pillars,
-  .about-hero__stats {
+  .about-pillars__grid,
+  .about-pillars__stats {
     grid-template-columns: 1fr;
     gap: 28px;
     padding: 36px 0;
   }
-  .about-hero__stat-value {
+  .about-pillars__stat-value {
     font-size: 44px;
+  }
+  .about-showcase {
+    padding: 16px 0 64px;
+  }
+  .about-showcase__figure {
+    aspect-ratio: 4 / 3;
   }
 }
 
 @media (max-width: 480px) {
   .about-hero {
-    padding: 120px 0 48px;
+    padding: 128px 0 56px;
   }
   .about-hero__intro {
     font-size: 16px;
   }
-  .about-hero__pillar-title {
+  .about-pillars__pillar-title {
     font-size: 20px;
   }
-  .about-hero__stat-value {
+  .about-pillars__stat-value {
     font-size: 38px;
   }
 }

@@ -3,13 +3,24 @@ import { Link } from 'react-router-dom'
 import { ctaBanner } from '../content/ctaBanner.js'
 import './CtaBanner.css'
 
-export default function CtaBanner() {
+export default function CtaBanner({ imageless = false, image }) {
+  const resolvedImage = image || ctaBanner.image
   return (
-    <section className="cta-banner" aria-labelledby="cta-banner-heading">
-      <div className="cta-banner__media" aria-hidden="true">
-        <img src={ctaBanner.image.src} alt="" className="cta-banner__image" loading="lazy" />
-        <div className="cta-banner__veil" />
-      </div>
+    <section
+      className={`cta-banner${imageless ? ' cta-banner--imageless' : ''}`}
+      aria-labelledby="cta-banner-heading"
+    >
+      {!imageless && (
+        <div className="cta-banner__media" aria-hidden="true">
+          <img
+            src={resolvedImage.src}
+            alt=""
+            className="cta-banner__image"
+            loading="lazy"
+          />
+          <div className="cta-banner__veil" />
+        </div>
+      )}
 
       <motion.div
         className="cta-banner__inner"

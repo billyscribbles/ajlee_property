@@ -184,7 +184,7 @@ export default function ListingsPage() {
         </div>
       </section>
 
-      <CtaBanner />
+      <CtaBanner imageless />
     </main>
   )
 }
