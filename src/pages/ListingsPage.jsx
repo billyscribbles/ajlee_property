@@ -184,7 +184,12 @@ export default function ListingsPage() {
         </div>
       </section>
 
-      <CtaBanner imageless />
+      <CtaBanner
+        image={{
+          src: '/images/home-modern-facade.png',
+          alt: 'Contemporary architectural home with stone facade and landscaped frontage.',
+        }}
+      />
     </main>
   )
 }
