@@ -26,12 +26,10 @@ export const site = {
   footer: {
     columns: [
       {
-        title: 'Navigation',
+        title: 'Explore',
         links: [
           { label: 'Home', to: '/' },
           { label: 'Listings', to: '/listings' },
-          { label: 'Selling', to: '/selling' },
-          { label: 'Property Management', to: '/property-management' },
           { label: 'About Us', to: '/about' },
           { label: 'Contact Us', to: '/contact' },
         ],
