@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+    <meta name="theme-color" content="#0a0a0c" />
+
+    <!-- Self-hosted fonts. @font-face declarations live in src/fonts.css.
+         Preload only the regular weights — the rest stream in on demand. -->
+    <link
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Fallback SEO — runtime Helmet (src/lib/seo.jsx) overrides these per page. -->
+    <title>AJ Lee Property Group — Real Estate Made Personal</title>
+    <meta
+      name="description"
+      content="Boutique Melbourne real estate agency serving the South East with personalised selling, property management and appraisals."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AJ Lee Property Group" />
+    <meta
+      property="og:description"
+      content="Real estate made personal. Every client, every time."
+    />
+    <meta property="og:image" content="/brand/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AJ Lee Property Group" />
+    <meta
+      name="twitter:description"
+      content="Real estate made personal. Every client, every time."
+    />
+    <meta name="twitter:image" content="/brand/og-image.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

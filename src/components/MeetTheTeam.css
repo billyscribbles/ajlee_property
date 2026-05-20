@@ -1,0 +1,152 @@
+.team {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 120px 0;
+}
+
+.team__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: center;
+}
+
+.team__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.team__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: saturate(0.92) contrast(1.02);
+}
+
+.team__content {
+  max-width: 460px;
+}
+
+.team__eyebrow {
+  color: var(--color-muted) !important;
+  margin-bottom: 18px;
+}
+
+.team__heading {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 22px;
+}
+
+.team__heading-line {
+  display: block;
+}
+
+.team__body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-text-soft);
+  margin: 0 0 36px;
+  max-width: 420px;
+}
+
+.team__signature {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.team__signature-mark {
+  height: 56px;
+  width: auto;
+  filter: drop-shadow(0 0 0 transparent);
+}
+
+.team__signature-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 4px;
+}
+
+.team__signature-name {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.team__signature-role {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-muted);
+  letter-spacing: 0.04em;
+}
+
+.team__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 30px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    gap var(--transition-fast);
+}
+
+.team__cta:hover {
+  background: #ffffff;
+  color: #0a0a0c;
+  border-color: #ffffff;
+  gap: 16px;
+}
+
+@media (max-width: 960px) {
+  .team {
+    padding: 80px 0;
+  }
+  .team__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .team__content {
+    max-width: 100%;
+  }
+  .team__media {
+    aspect-ratio: 16 / 11;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .team__inner {
+    padding: 0 20px;
+  }
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0c"/>
+      <stop offset="100%" stop-color="#16161a"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a0a0c" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#0a0a0c" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0a0a0c" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- subtle skyline silhouette band -->
+  <g opacity="0.18" fill="#ffffff">
+    <rect x="780" y="380" width="20" height="170"/>
+    <rect x="810" y="320" width="30" height="230"/>
+    <rect x="850" y="360" width="22" height="190"/>
+    <rect x="880" y="280" width="34" height="270"/>
+    <rect x="922" y="340" width="24" height="210"/>
+    <rect x="956" y="240" width="40" height="310"/>
+    <rect x="1006" y="300" width="28" height="250"/>
+    <rect x="1044" y="350" width="22" height="200"/>
+    <rect x="1074" y="310" width="32" height="240"/>
+    <rect x="1116" y="370" width="20" height="180"/>
+    <rect x="1144" y="330" width="30" height="220"/>
+    <rect x="0" y="540" width="1200" height="90"/>
+  </g>
+  <rect x="600" y="0" width="600" height="630" fill="url(#fade)"/>
+  <!-- brand mark -->
+  <text x="100" y="240" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="92" letter-spacing="6" fill="#ffffff">AJ LEE</text>
+  <text x="103" y="290" font-family="Helvetica, Arial, sans-serif" font-weight="400" font-size="26" letter-spacing="8" fill="#ffffff">PROPERTY GROUP</text>
+  <line x1="100" y1="340" x2="200" y2="340" stroke="#ffffff" stroke-width="2"/>
+  <text x="100" y="420" font-family="Georgia, serif" font-style="italic" font-size="48" fill="#ffffff">Real estate</text>
+  <text x="100" y="478" font-family="Georgia, serif" font-style="italic" font-size="48" fill="#ffffff">made personal.</text>
+  <text x="100" y="555" font-family="Helvetica, Arial, sans-serif" font-size="20" letter-spacing="2" fill="#8a8a8a">MELBOURNE · SOUTH EAST</text>
+</svg>

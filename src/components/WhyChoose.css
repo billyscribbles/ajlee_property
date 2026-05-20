@@ -1,0 +1,134 @@
+.why-choose {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 120px 0;
+}
+
+.why-choose__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 80px;
+  align-items: center;
+}
+
+.why-choose__content {
+  max-width: 480px;
+}
+
+.section-eyebrow {
+  color: var(--color-muted) !important;
+}
+
+.why-choose__heading {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0 0 24px;
+}
+
+.why-choose__heading-line {
+  display: block;
+}
+
+.why-choose__body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--color-text-soft);
+  margin: 0 0 48px;
+  max-width: 420px;
+}
+
+.why-choose__features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.why-choose__feature {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.why-choose__feature-icon {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+}
+
+.why-choose__feature-title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.why-choose__feature-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.why-choose__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+}
+
+.why-choose__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media (max-width: 960px) {
+  .why-choose {
+    padding: 80px 0;
+  }
+  .why-choose__inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .why-choose__content {
+    max-width: 100%;
+  }
+  .why-choose__media {
+    order: -1;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 600px) {
+  .why-choose__inner {
+    padding: 0 20px;
+  }
+  .why-choose__features {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .why-choose__body {
+    margin-bottom: 36px;
+  }
+}
