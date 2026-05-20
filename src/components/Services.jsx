@@ -34,7 +34,9 @@ export default function Services() {
                 <p className="services__body">{item.body}</p>
                 {item.to && (
                   <Link to={item.to} className="services__cta">
-                    <span>Learn more</span>
+                    <span>
+                      Learn more<span className="sr-only"> about {item.title}</span>
+                    </span>
                     <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                   </Link>
                 )}
