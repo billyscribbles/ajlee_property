@@ -127,6 +127,13 @@ Footer is rendered globally in `App.jsx`.
 - **Lifting from existing components is fine.** Composition over inheritance.
 - **Keep commits atomic** — one commit per logical change (theme, content, layout) makes rollback trivial.
 - **Don't over-engineer.** Small, focused, easy to scan > clever abstractions.
+- **Run the CI gates before every commit.** CI (`.github/workflows/ci.yml`)
+  runs `yarn lint && yarn format:check && yarn test && yarn build` and then a
+  Lighthouse pass. Before _each_ commit (atomic or otherwise), run those four
+  locally — `yarn format` first if `format:check` flags anything, then re-run
+  the check. Never push commits that you haven't proven green locally; a
+  formatter-only fixup commit on top is acceptable but wasteful and should be
+  the exception, not the routine.
 
 ## Local development
 
