@@ -18,7 +18,7 @@ export default function PropertyManagementPage() {
       <section className="service-hero service-hero--with-media">
         <div className="service-hero__media" aria-hidden="true">
           <img
-            src="/images/home-bedroom.png"
+            src="/images/home-bedroom.webp"
             alt=""
             className="service-hero__image"
             loading="eager"
@@ -171,7 +171,7 @@ export default function PropertyManagementPage() {
       <Services exclude="Property Management" />
       <CtaBanner
         image={{
-          src: '/images/home-spa-bathroom.png',
+          src: '/images/home-spa-bathroom.webp',
           alt: 'Spa-style ensuite with freestanding tub, walk-in shower and palm garden view.',
         }}
       />

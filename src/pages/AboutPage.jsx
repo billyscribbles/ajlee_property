@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className="about-hero">
         <div className="about-hero__media" aria-hidden="true">
           <img
-            src="/images/home-living-fireplace.png"
+            src="/images/home-living-fireplace.webp"
             alt=""
             className="about-hero__image"
             loading="eager"
@@ -55,7 +55,7 @@ export default function AboutPage() {
         <div className="container about-showcase__inner">
           <figure className="about-showcase__figure">
             <img
-              src="/images/home-dining.png"
+              src="/images/home-dining.webp"
               alt="Open-plan dining space with brass pendant lighting and warm timber floors."
               loading="lazy"
               className="about-showcase__image"
@@ -76,7 +76,7 @@ export default function AboutPage() {
       <Testimonials />
       <CtaBanner
         image={{
-          src: '/images/home-resort-lounge.png',
+          src: '/images/home-resort-lounge.webp',
           alt: 'Outdoor lounge with pool, palms and open-plan living interior.',
         }}
       />

@@ -53,7 +53,7 @@ export const propertyManagement = {
       'Activity summary for routine inspections',
     ],
     image: {
-      src: '/images/propertyme-portal.png',
+      src: '/images/propertyme-portal.webp',
       alt: 'PropertyMe owner portal shown across desktop, tablet and mobile devices.',
     },
   },

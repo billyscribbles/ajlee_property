@@ -10,7 +10,7 @@ export default function ContactPage() {
       <section className="contact-hero">
         <div className="contact-hero__media" aria-hidden="true">
           <img
-            src="/images/home-poolside-lounge.png"
+            src="/images/home-poolside-lounge.webp"
             alt=""
             className="contact-hero__image"
             loading="eager"

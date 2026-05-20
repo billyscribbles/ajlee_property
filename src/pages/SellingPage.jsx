@@ -16,7 +16,7 @@ export default function SellingPage() {
       <section className="service-hero service-hero--with-media">
         <div className="service-hero__media" aria-hidden="true">
           <img
-            src="/images/home-exterior-twilight.png"
+            src="/images/home-exterior-twilight.webp"
             alt=""
             className="service-hero__image"
             loading="eager"
@@ -51,7 +51,7 @@ export default function SellingPage() {
           <div className="service-showcase__grid">
             <figure className="service-showcase__figure">
               <img
-                src="/images/home-open-plan-living.png"
+                src="/images/home-open-plan-living.webp"
                 alt="Open-plan kitchen and living space with floor-to-ceiling glazing."
                 loading="lazy"
                 className="service-showcase__image"
@@ -59,7 +59,7 @@ export default function SellingPage() {
             </figure>
             <figure className="service-showcase__figure">
               <img
-                src="/images/home-kitchen-island.png"
+                src="/images/home-kitchen-island.webp"
                 alt="Walnut and marble kitchen island with brass pendants overhead."
                 loading="lazy"
                 className="service-showcase__image"
@@ -103,7 +103,7 @@ export default function SellingPage() {
       <Services exclude="Selling" />
       <CtaBanner
         image={{
-          src: '/images/home-walnut-kitchen.png',
+          src: '/images/home-walnut-kitchen.webp',
           alt: 'Designer walnut kitchen with marble waterfall island and brass pendants.',
         }}
       />
