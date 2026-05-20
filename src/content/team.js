@@ -16,6 +16,7 @@ export const team = {
       name: 'Andrew Lee',
       role: 'Founder & Director',
       photo: '/images/team/andrew-lee.png',
+      photoPosition: 'center 18%',
       bio: 'Leads the overall strategy and direction of the business, working closely with clients to drive strong outcomes across both sales and property management.',
     },
     {

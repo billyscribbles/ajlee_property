@@ -38,6 +38,7 @@ export default function MeetTheTeam() {
                   alt={`${member.name}, ${member.role} at AJ Lee Property Group`}
                   loading="lazy"
                   className="team__image"
+                  style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined}
                 />
               </div>
               <div className="team__card-body">
