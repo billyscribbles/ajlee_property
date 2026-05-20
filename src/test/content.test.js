@@ -38,19 +38,10 @@ describe('content — section copy contract', () => {
     }
   })
 
-  it('properties items have address, suburb, price, and feature counts', () => {
-    expect(Array.isArray(properties.items)).toBe(true)
-    expect(properties.items.length).toBeGreaterThan(0)
-    for (const p of properties.items) {
-      expect(p.status).toBeTruthy()
-      expect(p.image).toBeTruthy()
-      expect(p.address).toBeTruthy()
-      expect(p.suburb).toBeTruthy()
-      expect(p.price).toBeTruthy()
-      expect(Number.isInteger(p.beds)).toBe(true)
-      expect(Number.isInteger(p.baths)).toBe(true)
-      expect(Number.isInteger(p.parking)).toBe(true)
-    }
+  it('properties section keeps its eyebrow + view-all link metadata', () => {
+    expect(properties.eyebrow).toBeTruthy()
+    expect(properties.viewAllLabel).toBeTruthy()
+    expect(properties.viewAllTo).toBeTruthy()
   })
 
   it('services items have an icon, title, body, and per-card link', () => {

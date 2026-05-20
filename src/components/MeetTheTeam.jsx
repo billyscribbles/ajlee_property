@@ -39,15 +39,15 @@ export default function MeetTheTeam({ variant = 'short' }) {
                   alt={`${member.name}, ${member.role} at AJ Lee Property Group`}
                   loading="lazy"
                   className="team__image"
-                  style={member.photoPosition ? { objectPosition: member.photoPosition } : undefined}
+                  style={
+                    member.photoPosition ? { objectPosition: member.photoPosition } : undefined
+                  }
                 />
               </div>
               <div className="team__card-body">
                 <h3 className="team__name">{member.name}</h3>
                 <p className="team__role">{member.role}</p>
-                <p className="team__bio">
-                  {(useLongBio && member.bioLong) || member.bio}
-                </p>
+                <p className="team__bio">{(useLongBio && member.bioLong) || member.bio}</p>
               </div>
             </motion.li>
           ))}

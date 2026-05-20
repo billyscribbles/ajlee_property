@@ -16,3 +16,6 @@ dist-ssr
 .vite
 .tmp
 .firecrawl
+
+# Supabase CLI scratch files (linked project ref, cached versions, etc.)
+supabase/.temp

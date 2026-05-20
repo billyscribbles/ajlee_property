@@ -35,6 +35,10 @@ const PropertyManagementPage = lazyWithRetry(() => import('./pages/PropertyManag
 const ContactPage = lazyWithRetry(() => import('./pages/ContactPage.jsx'))
 const LegalPage = lazyWithRetry(() => import('./pages/LegalPage.jsx'))
 const NotFoundPage = lazyWithRetry(() => import('./pages/NotFoundPage.jsx'))
+const AdminLogin = lazyWithRetry(() => import('./pages/admin/AdminLogin.jsx'))
+const AdminDashboard = lazyWithRetry(() => import('./pages/admin/AdminDashboard.jsx'))
+const AdminListingForm = lazyWithRetry(() => import('./pages/admin/AdminListingForm.jsx'))
+const RequireAuth = lazyWithRetry(() => import('./components/admin/RequireAuth.jsx'))
 
 // Resets scroll on navigation and reports the page view to analytics.
 function RouteChange() {
@@ -54,14 +58,17 @@ function RouteChange() {
   return null
 }
 
-export default function App() {
+function AppShell() {
+  const { pathname } = useLocation()
+  const isAdmin = pathname.startsWith('/admin')
   return (
-    <BrowserRouter>
-      <RouteChange />
-      <a href="#main" className="skip-link">
-        Skip to content
-      </a>
-      <Navbar />
+    <>
+      {!isAdmin && (
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+      )}
+      {!isAdmin && <Navbar />}
       <div id="main" tabIndex={-1}>
         <ErrorBoundary>
           <Suspense fallback={<RouteFallback />}>
@@ -73,12 +80,46 @@ export default function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy" element={<LegalPage type="privacy" />} />
               <Route path="/terms" element={<LegalPage type="terms" />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route
+                path="/admin"
+                element={
+                  <RequireAuth>
+                    <AdminDashboard />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/admin/listings/new"
+                element={
+                  <RequireAuth>
+                    <AdminListingForm />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/admin/listings/:id"
+                element={
+                  <RequireAuth>
+                    <AdminListingForm />
+                  </RequireAuth>
+                }
+              />
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>
       </div>
-      <Footer />
+      {!isAdmin && <Footer />}
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <RouteChange />
+      <AppShell />
     </BrowserRouter>
   )
 }

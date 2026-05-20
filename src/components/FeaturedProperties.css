@@ -181,6 +181,32 @@
   gap: 14px;
 }
 
+.properties .admin-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-card) 0%,
+    var(--color-bg-alt) 50%,
+    var(--color-bg-card) 100%
+  );
+  background-size: 200% 100%;
+  animation: properties-shimmer 1.4s linear infinite;
+  border-radius: var(--radius-sm);
+}
+
+.properties .properties__media.admin-skeleton {
+  width: 100%;
+  border-radius: 0;
+}
+
+@keyframes properties-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @media (max-width: 960px) {
   .properties__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

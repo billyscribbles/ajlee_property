@@ -68,14 +68,14 @@ Outstanding follow-ups from the initial site build. Tick as you go.
 
 ## Reference (where things live)
 
-| Thing | File |
-|---|---|
-| Brand strings, nav, contact, SEO defaults | `src/config/site.config.js` |
-| Colors, fonts, radii, shadows | `src/config/theme.config.js` |
-| Section copy | `src/content/*.js` (one per section) |
-| Privacy + Terms text | `src/content/legal.js` |
-| Per-page SEO | each page imports `SEO` from `src/lib/seo.jsx` |
-| Routes | `src/App.jsx` |
-| Home composition | `src/pages/Home.jsx` |
-| Env vars | `.env` (gitignored), `.env.example` |
-| Sitemap + robots | `public/*` (templated at build by `scripts/gen-seo-files.mjs`) |
+| Thing                                     | File                                                           |
+| ----------------------------------------- | -------------------------------------------------------------- |
+| Brand strings, nav, contact, SEO defaults | `src/config/site.config.js`                                    |
+| Colors, fonts, radii, shadows             | `src/config/theme.config.js`                                   |
+| Section copy                              | `src/content/*.js` (one per section)                           |
+| Privacy + Terms text                      | `src/content/legal.js`                                         |
+| Per-page SEO                              | each page imports `SEO` from `src/lib/seo.jsx`                 |
+| Routes                                    | `src/App.jsx`                                                  |
+| Home composition                          | `src/pages/Home.jsx`                                           |
+| Env vars                                  | `.env` (gitignored), `.env.example`                            |
+| Sitemap + robots                          | `public/*` (templated at build by `scripts/gen-seo-files.mjs`) |
