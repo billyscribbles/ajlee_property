@@ -6,7 +6,7 @@ export const site = {
     logoText: 'AJ LEE',
     tagline: 'Real estate made personal. Every client, every time.',
     // Image logo (white wordmark) used in the dark navbar + footer.
-    logoSrc: '/brand/logo-white.png',
+    logoSrc: '/brand/logo-white.webp',
   },
 
   nav: [

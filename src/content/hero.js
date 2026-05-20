@@ -4,7 +4,7 @@ export const hero = {
   primaryCta: { label: 'Book an Appraisal', to: '/contact' },
   secondaryCta: { label: 'View Properties', to: '/selling' },
   image: {
-    src: '/images/hero-skyline.png',
+    src: '/images/hero-skyline.webp',
     alt: 'Melbourne city skyline at dusk over the Yarra River',
   },
   // Keep legacy fields populated for the content contract test.

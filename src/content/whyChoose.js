@@ -3,7 +3,7 @@ export const whyChoose = {
   heading: 'Real estate\nmade personal.',
   body: "We believe every property decision is personal. That's why we combine deep local knowledge with a bespoke, client-first approach to deliver exceptional results.",
   image: {
-    src: '/images/why-choose-interior.jpg',
+    src: '/images/why-choose-interior.webp',
     alt: 'Premium living room with floor-to-ceiling windows overlooking the Melbourne skyline',
   },
   features: [
