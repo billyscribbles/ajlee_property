@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Plus, Pencil, Trash2, LogOut } from 'lucide-react'
+import { Plus, Pencil, LogOut } from 'lucide-react'
 import { adminApi, UnauthorizedError } from '../../lib/adminApi.js'
 import { clearStoredPassword } from '../../lib/adminAuth.js'
 import { publicImageUrl } from '../../lib/supabase.js'
 import SEO from '../../lib/seo.jsx'
 import Toggle from '../../components/admin/Toggle.jsx'
+import ThemeToggle from '../../components/admin/ThemeToggle.jsx'
+import { useAdminTheme } from '../../lib/adminTheme.js'
 import './admin.css'
 
 export default function AdminDashboard() {
   const navigate = useNavigate()
+  const { theme, setTheme } = useAdminTheme()
   const [listings, setListings] = useState(null)
   const [error, setError] = useState('')
   const [busyId, setBusyId] = useState(null)
@@ -49,30 +52,13 @@ export default function AdminDashboard() {
     }
   }
 
-  async function remove(row) {
-    if (!window.confirm(`Delete listing at ${row.address}? This cannot be undone.`)) return
-    setBusyId(row.id)
-    try {
-      await adminApi.remove(row.id)
-      setListings((prev) => prev.filter((l) => l.id !== row.id))
-    } catch (err) {
-      if (err instanceof UnauthorizedError) {
-        navigate('/admin/login', { replace: true })
-        return
-      }
-      setError(err.message || 'Delete failed.')
-    } finally {
-      setBusyId(null)
-    }
-  }
-
   function signOut() {
     clearStoredPassword()
     navigate('/admin/login', { replace: true })
   }
 
   return (
-    <div className="admin">
+    <div className="admin" data-admin-theme={theme}>
       <SEO title="Admin dashboard" />
       <div className="admin__container">
         <div className="admin__topbar">
@@ -81,6 +67,7 @@ export default function AdminDashboard() {
             <h1 className="admin__title">Listings</h1>
           </div>
           <div className="admin__actions">
+            <ThemeToggle theme={theme} onChange={setTheme} />
             <Link to="/admin/listings/new" className="admin-btn admin-btn--primary">
               <Plus size={14} aria-hidden="true" /> New listing
             </Link>
@@ -161,15 +148,6 @@ export default function AdminDashboard() {
                           >
                             <Pencil size={14} aria-hidden="true" /> Edit
                           </Link>
-                          <button
-                            type="button"
-                            className="admin-btn admin-btn--danger"
-                            onClick={() => remove(row)}
-                            disabled={busyId === row.id}
-                            aria-label={`Delete ${row.address}`}
-                          >
-                            <Trash2 size={14} aria-hidden="true" /> Delete
-                          </button>
                         </div>
                       </td>
                     </tr>

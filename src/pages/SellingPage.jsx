@@ -15,6 +15,29 @@ import './ServicePage.css'
 
 const LISTING_SKELETONS = [0, 1, 2, 3]
 
+const STATUS_GROUPS = [
+  { label: 'For Sale', match: ['for sale'] },
+  { label: 'For Rent', match: ['for rent', 'for lease'] },
+  { label: 'Under Offer', match: ['under offer'] },
+  { label: 'Sold', match: ['sold'] },
+  { label: 'Leased', match: ['leased'] },
+]
+
+function groupByStatus(items) {
+  const buckets = STATUS_GROUPS.map((g) => ({ ...g, items: [] }))
+  const other = []
+  for (const item of items) {
+    const key = String(item.status ?? '')
+      .trim()
+      .toLowerCase()
+    const bucket = buckets.find((b) => b.match.includes(key))
+    if (bucket) bucket.items.push(item)
+    else if (key) other.push(item)
+  }
+  if (other.length) buckets.push({ label: 'Other', items: other })
+  return buckets.filter((b) => b.items.length)
+}
+
 export default function SellingPage() {
   const scrollIn = useScrollIn()
   const { listings } = selling
@@ -29,6 +52,8 @@ export default function SellingPage() {
       cancelled = true
     }
   }, [])
+
+  const grouped = items ? groupByStatus(items) : null
 
   return (
     <main className="service-page">
@@ -78,32 +103,49 @@ export default function SellingPage() {
             )}
           </div>
 
-          {items !== null && items.length === 0 ? (
+          {items === null ? (
+            <div className="service-listings__grid">
+              {LISTING_SKELETONS.map((i) => (
+                <article
+                  key={`skeleton-${i}`}
+                  className="service-listings__card"
+                  aria-hidden="true"
+                >
+                  <div className="service-listings__media admin-skeleton" />
+                  <div className="service-listings__body-block">
+                    <div
+                      className="admin-skeleton"
+                      style={{ height: 26, width: '70%', marginBottom: 10 }}
+                    />
+                    <div
+                      className="admin-skeleton"
+                      style={{ height: 14, width: '40%', marginBottom: 22 }}
+                    />
+                    <div className="admin-skeleton" style={{ height: 36 }} />
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : items.length === 0 ? (
             <p className="service-listings__empty">{listings.emptyMessage}</p>
           ) : (
-            <div className="service-listings__grid">
-              {items === null
-                ? LISTING_SKELETONS.map((i) => (
-                    <article
-                      key={`skeleton-${i}`}
-                      className="service-listings__card"
-                      aria-hidden="true"
-                    >
-                      <div className="service-listings__media admin-skeleton" />
-                      <div className="service-listings__body-block">
-                        <div
-                          className="admin-skeleton"
-                          style={{ height: 26, width: '70%', marginBottom: 10 }}
-                        />
-                        <div
-                          className="admin-skeleton"
-                          style={{ height: 14, width: '40%', marginBottom: 22 }}
-                        />
-                        <div className="admin-skeleton" style={{ height: 36 }} />
-                      </div>
-                    </article>
-                  ))
-                : items.map((p, i) => {
+            grouped.map((group) => (
+              <div
+                key={group.label}
+                className="service-listings__group"
+                aria-labelledby={`group-${group.label.replace(/\s+/g, '-').toLowerCase()}`}
+              >
+                <h3
+                  id={`group-${group.label.replace(/\s+/g, '-').toLowerCase()}`}
+                  className="service-listings__group-heading"
+                >
+                  <span className="service-listings__group-label">{group.label}</span>
+                  <span className="service-listings__group-count">
+                    {group.items.length} {group.items.length === 1 ? 'property' : 'properties'}
+                  </span>
+                </h3>
+                <div className="service-listings__grid">
+                  {group.items.map((p, i) => {
                     const hasReaUrl = Boolean(p.reaUrl)
                     const ctaLabel = hasReaUrl ? 'View on realestate.com.au' : 'Enquire'
                     const linkAriaLabel = hasReaUrl
@@ -131,7 +173,7 @@ export default function SellingPage() {
                         />
 
                         <div className="service-listings__body-block">
-                          <h3 className="service-listings__address">{p.address}</h3>
+                          <h4 className="service-listings__address">{p.address}</h4>
                           <p className="service-listings__suburb">{p.suburb}</p>
 
                           <div className="service-listings__meta">
@@ -184,7 +226,9 @@ export default function SellingPage() {
                       </motion.article>
                     )
                   })}
-            </div>
+                </div>
+              </div>
+            ))
           )}
         </div>
       </section>

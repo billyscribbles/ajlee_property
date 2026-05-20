@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Upload, Trash2, ArrowUp, ArrowDown } from 'lucide-react'
+import { Upload, ArrowUp, ArrowDown, X } from 'lucide-react'
 import { adminApi } from '../../lib/adminApi.js'
 import { publicImageUrl } from '../../lib/supabase.js'
 
@@ -141,11 +141,23 @@ export default function ImageUploader({ listingId, images, onChange, disabled = 
         <div className="admin-uploader__grid">
           {images.map((img, i) => (
             <div key={`${img.path}-${i}`} className="admin-uploader__item">
-              <img
-                className="admin-uploader__thumb"
-                src={publicImageUrl(img.path)}
-                alt={img.alt || 'Listing image'}
-              />
+              <div className="admin-uploader__thumb-wrap">
+                <img
+                  className="admin-uploader__thumb"
+                  src={publicImageUrl(img.path)}
+                  alt={img.alt || 'Listing image'}
+                />
+                <button
+                  type="button"
+                  className="admin-uploader__remove"
+                  onClick={() => removeAt(i)}
+                  disabled={busy}
+                  aria-label="Remove image"
+                  title="Remove image"
+                >
+                  <X size={14} strokeWidth={2.5} />
+                </button>
+              </div>
               <div className="admin-uploader__row">
                 <input
                   className="admin-uploader__alt"
@@ -174,16 +186,6 @@ export default function ImageUploader({ listingId, images, onChange, disabled = 
                   title="Move down"
                 >
                   <ArrowDown size={14} />
-                </button>
-                <button
-                  type="button"
-                  className="admin-uploader__icon-btn admin-uploader__icon-btn--danger"
-                  onClick={() => removeAt(i)}
-                  disabled={busy}
-                  aria-label="Remove"
-                  title="Remove"
-                >
-                  <Trash2 size={14} />
                 </button>
               </div>
             </div>

@@ -12,7 +12,7 @@ export const site = {
   nav: [
     { label: 'Home', to: '/' },
     { label: 'About Us', to: '/about' },
-    { label: 'Selling', to: '/selling' },
+    { label: 'Listings', to: '/selling' },
     { label: 'Property Management', to: '/property-management' },
     { label: 'Contact Us', to: '/contact' },
   ],
@@ -29,7 +29,7 @@ export const site = {
         links: [
           { label: 'Home', to: '/' },
           { label: 'About Us', to: '/about' },
-          { label: 'Selling', to: '/selling' },
+          { label: 'Listings', to: '/selling' },
           { label: 'Property Management', to: '/property-management' },
           { label: 'Contact Us', to: '/contact' },
         ],

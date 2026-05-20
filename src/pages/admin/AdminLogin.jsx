@@ -3,11 +3,14 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { adminApi, UnauthorizedError } from '../../lib/adminApi.js'
 import { setStoredPassword } from '../../lib/adminAuth.js'
 import SEO from '../../lib/seo.jsx'
+import ThemeToggle from '../../components/admin/ThemeToggle.jsx'
+import { useAdminTheme } from '../../lib/adminTheme.js'
 import './admin.css'
 
 export default function AdminLogin() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { theme, setTheme } = useAdminTheme()
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
@@ -34,8 +37,9 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="admin-login">
+    <div className="admin-login" data-admin-theme={theme}>
       <SEO title="Admin login" />
+      <ThemeToggle theme={theme} onChange={setTheme} />
       <div className="admin-login__card">
         <h1 className="admin-login__heading">Admin sign in</h1>
         <p className="admin-login__sub">AJ Lee Property — listing management.</p>

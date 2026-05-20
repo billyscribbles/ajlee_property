@@ -5,9 +5,11 @@ import { adminApi, UnauthorizedError } from '../../lib/adminApi.js'
 import SEO from '../../lib/seo.jsx'
 import Toggle from '../../components/admin/Toggle.jsx'
 import ImageUploader from '../../components/admin/ImageUploader.jsx'
+import ThemeToggle from '../../components/admin/ThemeToggle.jsx'
+import { useAdminTheme } from '../../lib/adminTheme.js'
 import './admin.css'
 
-const STATUS_OPTIONS = ['For Sale', 'For Lease', 'Under Offer', 'Sold', 'Leased']
+const STATUS_OPTIONS = ['For Sale', 'For Rent', 'Under Offer', 'Sold', 'Leased']
 
 const EMPTY = {
   slug: '',
@@ -38,6 +40,7 @@ export default function AdminListingForm() {
   const { id } = useParams()
   const navigate = useNavigate()
   const isEdit = Boolean(id)
+  const { theme, setTheme } = useAdminTheme()
   const [form, setForm] = useState(EMPTY)
   const [loading, setLoading] = useState(isEdit)
   const [busy, setBusy] = useState(false)
@@ -138,7 +141,7 @@ export default function AdminListingForm() {
 
   if (loading) {
     return (
-      <div className="admin">
+      <div className="admin" data-admin-theme={theme}>
         <div className="admin__container">
           <p style={{ color: 'var(--color-muted)' }}>Loading listing…</p>
         </div>
@@ -147,7 +150,7 @@ export default function AdminListingForm() {
   }
 
   return (
-    <div className="admin">
+    <div className="admin" data-admin-theme={theme}>
       <SEO title={isEdit ? 'Edit listing' : 'New listing'} />
       <div className="admin__container">
         <div className="admin__topbar">
@@ -156,6 +159,9 @@ export default function AdminListingForm() {
               <ChevronLeft size={14} aria-hidden="true" /> Back to listings
             </Link>
             <h1 className="admin__title">{isEdit ? 'Edit listing' : 'New listing'}</h1>
+          </div>
+          <div className="admin__actions">
+            <ThemeToggle theme={theme} onChange={setTheme} />
           </div>
         </div>
 
