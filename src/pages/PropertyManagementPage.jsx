@@ -109,24 +109,11 @@ export default function PropertyManagementPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="owner-portal__frame">
-              <div className="owner-portal__frame-bar" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-              <img
-                src={portal.image.src}
-                alt={portal.image.alt}
-                loading="lazy"
-                className="owner-portal__image"
-              />
-            </div>
             <img
-              src={portal.mobileImage.src}
-              alt={portal.mobileImage.alt}
+              src={portal.image.src}
+              alt={portal.image.alt}
               loading="lazy"
-              className="owner-portal__mobile"
+              className="owner-portal__image"
             />
           </motion.div>
         </div>

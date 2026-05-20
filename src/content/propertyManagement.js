@@ -51,12 +51,8 @@ export const propertyManagement = {
       'Activity summary for every routine inspection',
     ],
     image: {
-      src: '/images/propertyme-owner-portal.png',
-      alt: 'PropertyMe owner portal showing live property and financial information',
-    },
-    mobileImage: {
-      src: '/images/propertyme-mobile-app.png',
-      alt: 'PropertyMe owner mobile app on iPhone',
+      src: '/images/propertyme-devices.png',
+      alt: 'PropertyMe owner portal on desktop, tablet and mobile',
     },
     sourceLabel: 'Powered by PropertyMe',
     sourceHref: 'https://www.propertyme.com.au/owner/features',

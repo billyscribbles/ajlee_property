@@ -274,48 +274,13 @@
 
 .owner-portal__media {
   position: relative;
-  padding: 0 0 56px 56px;
-}
-
-.owner-portal__frame {
-  position: relative;
-  background: #1a1a1f;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-.owner-portal__mobile {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 24%;
-  max-width: 180px;
-  height: auto;
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55));
-  pointer-events: none;
-}
-
-.owner-portal__frame-bar {
-  display: flex;
-  gap: 6px;
-  padding: 10px 14px;
-  background: #111114;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.owner-portal__frame-bar span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
 }
 
 .owner-portal__image {
   display: block;
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.55));
 }
 
 /* Owner guarantee */
@@ -387,13 +352,6 @@
   }
   .owner-portal__content {
     max-width: 100%;
-  }
-  .owner-portal__media {
-    padding: 0 0 40px 32px;
-  }
-  .owner-portal__mobile {
-    width: 28%;
-    max-width: 140px;
   }
   .owner-guarantee__list {
     grid-template-columns: 1fr;
