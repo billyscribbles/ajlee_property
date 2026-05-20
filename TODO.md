@@ -39,10 +39,6 @@ Outstanding follow-ups from the initial site build. Tick as you go.
 
 ## Optional polish (before launch)
 
-- [ ] **Self-host fonts.** Currently loading Cormorant Garamond + Inter from
-      Google Fonts via `<link>` in `index.html`. To drop the third-party
-      dependency, download woff2 files into `public/fonts/` and swap the
-      `<link>` block for `<link rel="preload" as="font">`.
 - [ ] **Real signature graphic.** `public/brand/signature.svg` is a basic
       text-based stand-in. Swap for an actual hand-signed SVG/PNG of AJ Lee's
       signature when available.

@@ -14,3 +14,4 @@ dist-ssr
 .pnp.*
 *.log
 .vite
+.tmp
