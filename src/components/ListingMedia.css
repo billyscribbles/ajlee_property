@@ -1,0 +1,112 @@
+.listing-media__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: rgba(10, 10, 12, 0.55);
+  color: var(--color-text);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-50%);
+  backdrop-filter: blur(4px);
+  transition:
+    opacity var(--transition-base),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.listing-media__nav--prev {
+  left: 12px;
+}
+
+.listing-media__nav--next {
+  right: 12px;
+}
+
+.properties__card:hover .listing-media__nav,
+.service-listings__card:hover .listing-media__nav {
+  opacity: 0.55;
+}
+
+.listing-media__nav:hover,
+.listing-media__nav:focus-visible {
+  opacity: 1;
+  background: rgba(10, 10, 12, 0.85);
+  border-color: var(--color-border-strong);
+  outline: none;
+}
+
+.listing-media__dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 10, 12, 0.45);
+  transform: translateX(-50%);
+  backdrop-filter: blur(4px);
+}
+
+.listing-media__dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.listing-media__dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.listing-media__dot:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.listing-media__dot--active {
+  background: var(--color-accent);
+  transform: scale(1.25);
+}
+
+@media (hover: none) {
+  .listing-media__nav {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .listing-media__nav,
+  .listing-media__dot {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .listing-media__nav {
+    width: 32px;
+    height: 32px;
+  }
+  .listing-media__nav--prev {
+    left: 8px;
+  }
+  .listing-media__nav--next {
+    right: 8px;
+  }
+}

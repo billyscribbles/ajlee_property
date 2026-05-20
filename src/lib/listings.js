@@ -7,6 +7,7 @@ const LISTING_COLUMNS =
 function toCard(row) {
   const images = Array.isArray(row.images) ? row.images : []
   const hero = images[0] ?? null
+  const fallbackAlt = `${row.address}, ${row.suburb}`
   return {
     id: row.id,
     slug: row.slug,
@@ -19,8 +20,14 @@ function toCard(row) {
     price: row.price ?? '',
     reaUrl: row.rea_url ?? '',
     image: hero ? publicImageUrl(hero.path) : '',
-    imageAlt: hero?.alt ?? `${row.address}, ${row.suburb}`,
+    imageAlt: hero?.alt ?? fallbackAlt,
     images,
+    gallery: images
+      .filter((img) => img?.path)
+      .map((img) => ({
+        src: publicImageUrl(img.path),
+        alt: img.alt ?? fallbackAlt,
+      })),
   }
 }
 

@@ -5,6 +5,7 @@ import { ArrowRight, Bed, Bath, Car } from 'lucide-react'
 import { properties } from '../content/properties.js'
 import { fetchFeaturedListings } from '../lib/listings.js'
 import { useScrollIn } from '../lib/motion.js'
+import ListingMedia from './ListingMedia.jsx'
 import './FeaturedProperties.css'
 
 const PLACEHOLDERS = [0, 1, 2]
@@ -70,22 +71,20 @@ export default function FeaturedProperties() {
                     className="properties__card"
                     {...scrollIn(i)}
                   >
-                    <div className="properties__media">
-                      {p.image ? (
-                        <img
-                          src={p.image}
-                          alt={p.imageAlt}
-                          loading="lazy"
-                          className="properties__image"
-                        />
-                      ) : (
-                        <div
-                          className="properties__image"
-                          style={{ background: 'var(--color-bg-alt)' }}
-                        />
-                      )}
-                      <span className="properties__status">{p.status}</span>
-                    </div>
+                    <ListingMedia
+                      gallery={
+                        p.gallery && p.gallery.length > 0
+                          ? p.gallery
+                          : p.image
+                            ? [{ src: p.image, alt: p.imageAlt }]
+                            : []
+                      }
+                      imageAlt={p.imageAlt}
+                      status={p.status}
+                      wrapperClassName="properties__media"
+                      imageClassName="properties__image"
+                      statusClassName="properties__status"
+                    />
 
                     <div className="properties__body">
                       <h3 className="properties__address">{p.address}</h3>

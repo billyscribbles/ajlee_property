@@ -10,6 +10,7 @@ import CtaBanner from '../components/CtaBanner.jsx'
 import { fetchPublishedListings } from '../lib/listings.js'
 import { useScrollIn } from '../lib/motion.js'
 import { selling } from '../content/selling.js'
+import ListingMedia from '../components/ListingMedia.jsx'
 import './ServicePage.css'
 
 const LISTING_SKELETONS = [0, 1, 2, 3]
@@ -114,22 +115,20 @@ export default function SellingPage() {
                         className="service-listings__card"
                         {...scrollIn(i)}
                       >
-                        <div className="service-listings__media">
-                          {p.image ? (
-                            <img
-                              src={p.image}
-                              alt={p.imageAlt}
-                              loading="lazy"
-                              className="service-listings__image"
-                            />
-                          ) : (
-                            <div
-                              className="service-listings__image"
-                              style={{ background: 'var(--color-bg-alt)' }}
-                            />
-                          )}
-                          <span className="service-listings__status">{p.status}</span>
-                        </div>
+                        <ListingMedia
+                          gallery={
+                            p.gallery && p.gallery.length > 0
+                              ? p.gallery
+                              : p.image
+                                ? [{ src: p.image, alt: p.imageAlt }]
+                                : []
+                          }
+                          imageAlt={p.imageAlt}
+                          status={p.status}
+                          wrapperClassName="service-listings__media"
+                          imageClassName="service-listings__image"
+                          statusClassName="service-listings__status"
+                        />
 
                         <div className="service-listings__body-block">
                           <h3 className="service-listings__address">{p.address}</h3>
