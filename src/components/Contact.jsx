@@ -43,6 +43,7 @@ export default function Contact() {
 
   const phoneHref = site.contact.phone ? `tel:${site.contact.phone.replace(/\s+/g, '')}` : null
   const emailHref = site.contact.email ? `mailto:${site.contact.email}` : null
+  const whatsappHref = site.social.whatsapp || null
 
   return (
     <section className="contact section" id="contact">
@@ -56,7 +57,7 @@ export default function Contact() {
               to listen first &mdash; and deliver beyond expectations.
             </p>
 
-            {(phoneHref || emailHref) && (
+            {(phoneHref || emailHref || whatsappHref) && (
               <div className="contact__actions">
                 {phoneHref && (
                   <a className="contact__action" href={phoneHref}>
@@ -73,6 +74,20 @@ export default function Contact() {
                     <span className="contact__action-text">
                       <span className="contact__action-label">Email us</span>
                       <span className="contact__action-value">{site.contact.email}</span>
+                    </span>
+                  </a>
+                )}
+                {whatsappHref && (
+                  <a
+                    className="contact__action contact__action--wide"
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <WhatsAppIcon size={18} strokeWidth={1.5} />
+                    <span className="contact__action-text">
+                      <span className="contact__action-label">Message directly</span>
+                      <span className="contact__action-value">WhatsApp</span>
                     </span>
                   </a>
                 )}
