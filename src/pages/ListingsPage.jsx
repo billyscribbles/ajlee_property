@@ -1,0 +1,211 @@
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { ArrowRight, Bed, Bath, Car } from 'lucide-react'
+import SEO from '../lib/seo.jsx'
+import CtaBanner from '../components/CtaBanner.jsx'
+import { fetchPublishedListings } from '../lib/listings.js'
+import { useScrollIn } from '../lib/motion.js'
+import ListingMedia from '../components/ListingMedia.jsx'
+import './ServicePage.css'
+
+const LISTING_SKELETONS = [0, 1, 2, 3]
+
+const STATUS_GROUPS = [
+  { label: 'For Sale', match: ['for sale'] },
+  { label: 'For Rent', match: ['for rent', 'for lease'] },
+  { label: 'Under Offer', match: ['under offer'] },
+  { label: 'Sold', match: ['sold'] },
+  { label: 'Leased', match: ['leased'] },
+]
+
+function groupByStatus(items) {
+  const buckets = STATUS_GROUPS.map((g) => ({ ...g, items: [] }))
+  const other = []
+  for (const item of items) {
+    const key = String(item.status ?? '')
+      .trim()
+      .toLowerCase()
+    const bucket = buckets.find((b) => b.match.includes(key))
+    if (bucket) bucket.items.push(item)
+    else if (key) other.push(item)
+  }
+  if (other.length) buckets.push({ label: 'Other', items: other })
+  return buckets.filter((b) => b.items.length)
+}
+
+const EMPTY_MESSAGE = 'New listings will appear here as they launch.'
+
+export default function ListingsPage() {
+  const scrollIn = useScrollIn()
+  const [items, setItems] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+    fetchPublishedListings().then((data) => {
+      if (!cancelled) setItems(data)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const grouped = items ? groupByStatus(items) : null
+
+  return (
+    <main className="service-page">
+      <SEO title="Listings" path="/listings" />
+
+      <section className="service-hero">
+        <div className="container service-hero__inner">
+          <span className="section-eyebrow service-hero__eyebrow">Current campaigns</span>
+          <h1 className="service-hero__title">
+            <span className="service-hero__title-line">Listings across</span>
+            <span className="service-hero__title-line">Melbourne&rsquo;s South East.</span>
+          </h1>
+          <p className="service-hero__intro">
+            Homes for sale, for rent, under offer and recently sold — grouped so you can find what
+            matters to you.
+          </p>
+        </div>
+      </section>
+
+      <section className="service-listings section" aria-labelledby="listings-heading">
+        <div className="container">
+          <h2 id="listings-heading" className="sr-only">
+            Listings
+          </h2>
+          {items === null ? (
+            <div className="service-listings__grid">
+              {LISTING_SKELETONS.map((i) => (
+                <article
+                  key={`skeleton-${i}`}
+                  className="service-listings__card"
+                  aria-hidden="true"
+                >
+                  <div className="service-listings__media admin-skeleton" />
+                  <div className="service-listings__body-block">
+                    <div
+                      className="admin-skeleton"
+                      style={{ height: 26, width: '70%', marginBottom: 10 }}
+                    />
+                    <div
+                      className="admin-skeleton"
+                      style={{ height: 14, width: '40%', marginBottom: 22 }}
+                    />
+                    <div className="admin-skeleton" style={{ height: 36 }} />
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : items.length === 0 ? (
+            <p className="service-listings__empty">{EMPTY_MESSAGE}</p>
+          ) : (
+            grouped.map((group) => {
+              const slug = group.label.replace(/\s+/g, '-').toLowerCase()
+              return (
+                <div
+                  key={group.label}
+                  className="service-listings__group"
+                  aria-labelledby={`group-${slug}`}
+                >
+                  <h3 id={`group-${slug}`} className="service-listings__group-heading">
+                    <span className="service-listings__group-label">{group.label}</span>
+                    <span className="service-listings__group-count">
+                      {group.items.length} {group.items.length === 1 ? 'property' : 'properties'}
+                    </span>
+                  </h3>
+                  <div className="service-listings__grid">
+                    {group.items.map((p, i) => {
+                      const hasReaUrl = Boolean(p.reaUrl)
+                      const ctaLabel = hasReaUrl ? 'View on realestate.com.au' : 'Enquire'
+                      const linkAriaLabel = hasReaUrl
+                        ? `View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`
+                        : `Enquire about ${p.address}, ${p.suburb}`
+                      return (
+                        <motion.article
+                          key={p.id ?? p.slug}
+                          className="service-listings__card"
+                          {...scrollIn(i)}
+                        >
+                          <ListingMedia
+                            gallery={
+                              p.gallery && p.gallery.length > 0
+                                ? p.gallery
+                                : p.image
+                                  ? [{ src: p.image, alt: p.imageAlt }]
+                                  : []
+                            }
+                            imageAlt={p.imageAlt}
+                            status={p.status}
+                            wrapperClassName="service-listings__media"
+                            imageClassName="service-listings__image"
+                            statusClassName="service-listings__status"
+                          />
+
+                          <div className="service-listings__body-block">
+                            <h4 className="service-listings__address">{p.address}</h4>
+                            <p className="service-listings__suburb">{p.suburb}</p>
+
+                            <div className="service-listings__meta">
+                              <span
+                                className="service-listings__feature"
+                                aria-label={`${p.beds} bedrooms`}
+                              >
+                                <Bed size={16} strokeWidth={1.6} aria-hidden="true" />
+                                <span>{p.beds}</span>
+                              </span>
+                              <span
+                                className="service-listings__feature"
+                                aria-label={`${p.baths} bathrooms`}
+                              >
+                                <Bath size={16} strokeWidth={1.6} aria-hidden="true" />
+                                <span>{p.baths}</span>
+                              </span>
+                              <span
+                                className="service-listings__feature"
+                                aria-label={`${p.parking} parking`}
+                              >
+                                <Car size={16} strokeWidth={1.6} aria-hidden="true" />
+                                <span>{p.parking}</span>
+                              </span>
+                              <span className="service-listings__price">{p.price}</span>
+                            </div>
+
+                            {hasReaUrl ? (
+                              <a
+                                href={p.reaUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="service-listings__cta service-listings__cta--stretched"
+                                aria-label={linkAriaLabel}
+                              >
+                                <span>{ctaLabel}</span>
+                                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                              </a>
+                            ) : (
+                              <Link
+                                to="/contact"
+                                className="service-listings__cta service-listings__cta--stretched"
+                                aria-label={linkAriaLabel}
+                              >
+                                <span>{ctaLabel}</span>
+                                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                              </Link>
+                            )}
+                          </div>
+                        </motion.article>
+                      )
+                    })}
+                  </div>
+                </div>
+              )
+            })
+          )}
+        </div>
+      </section>
+
+      <CtaBanner />
+    </main>
+  )
+}

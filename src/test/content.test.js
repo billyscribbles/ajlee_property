@@ -106,9 +106,6 @@ describe('content — section copy contract', () => {
       expect(reason.title).toBeTruthy()
       expect(reason.body).toBeTruthy()
     }
-    expect(selling.listings.heading).toBeTruthy()
-    expect(selling.listings.body).toBeTruthy()
-    expect(selling.listings.emptyMessage).toBeTruthy()
   })
 
   it('propertyManagement page has intro and a services grid', () => {

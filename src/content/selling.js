@@ -37,13 +37,4 @@ export const selling = {
       body: 'Calm, prepared and unflappable at the table — we manage buyers strategically so the negotiation works in your favour, not theirs.',
     },
   ],
-
-  listings: {
-    eyebrow: 'Recent campaigns',
-    heading: 'Sold in days,\nnot months.',
-    body: 'A snapshot of homes we’ve launched, listed and sold across Melbourne’s South East — each one a campaign built around the property, the owner and the buyer at the right moment.',
-    emptyMessage: 'New campaigns will appear here as they launch.',
-    viewAllLabel: 'Talk to us about yours',
-    viewAllTo: '/contact',
-  },
 }

@@ -11,9 +11,10 @@ export const site = {
 
   nav: [
     { label: 'Home', to: '/' },
-    { label: 'About Us', to: '/about' },
-    { label: 'Listings', to: '/selling' },
+    { label: 'Listings', to: '/listings' },
+    { label: 'Selling', to: '/selling' },
     { label: 'Property Management', to: '/property-management' },
+    { label: 'About Us', to: '/about' },
     { label: 'Contact Us', to: '/contact' },
   ],
 
@@ -28,9 +29,10 @@ export const site = {
         title: 'Navigation',
         links: [
           { label: 'Home', to: '/' },
-          { label: 'About Us', to: '/about' },
-          { label: 'Listings', to: '/selling' },
+          { label: 'Listings', to: '/listings' },
+          { label: 'Selling', to: '/selling' },
           { label: 'Property Management', to: '/property-management' },
+          { label: 'About Us', to: '/about' },
           { label: 'Contact Us', to: '/contact' },
         ],
       },

@@ -415,6 +415,36 @@
   gap: 14px;
 }
 
+.service-listings__group + .service-listings__group {
+  margin-top: 64px;
+}
+
+.service-listings__group-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.service-listings__group-label {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--color-text);
+}
+
+.service-listings__group-count {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
 .service-listings__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

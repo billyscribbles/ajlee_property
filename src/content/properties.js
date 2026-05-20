@@ -4,5 +4,5 @@
 export const properties = {
   eyebrow: 'Featured properties',
   viewAllLabel: 'View all properties',
-  viewAllTo: '/selling',
+  viewAllTo: '/listings',
 }

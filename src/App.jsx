@@ -31,6 +31,7 @@ if (typeof window !== 'undefined') {
 
 const AboutPage = lazyWithRetry(() => import('./pages/AboutPage.jsx'))
 const SellingPage = lazyWithRetry(() => import('./pages/SellingPage.jsx'))
+const ListingsPage = lazyWithRetry(() => import('./pages/ListingsPage.jsx'))
 const PropertyManagementPage = lazyWithRetry(() => import('./pages/PropertyManagementPage.jsx'))
 const ContactPage = lazyWithRetry(() => import('./pages/ContactPage.jsx'))
 const LegalPage = lazyWithRetry(() => import('./pages/LegalPage.jsx'))
@@ -76,6 +77,7 @@ function AppShell() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/selling" element={<SellingPage />} />
+              <Route path="/listings" element={<ListingsPage />} />
               <Route path="/property-management" element={<PropertyManagementPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy" element={<LegalPage type="privacy" />} />
