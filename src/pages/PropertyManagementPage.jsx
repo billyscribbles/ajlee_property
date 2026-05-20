@@ -54,11 +54,7 @@ export default function PropertyManagementPage() {
           </h2>
           <div className="service-grid__list">
             {propertyManagement.services.map((s, i) => (
-              <motion.article
-                key={s.title}
-                className="service-grid__card"
-                {...scrollIn(i)}
-              >
+              <motion.article key={s.title} className="service-grid__card" {...scrollIn(i)}>
                 <span className="service-grid__index" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>
@@ -131,11 +127,7 @@ export default function PropertyManagementPage() {
           </h2>
           <ul className="owner-guarantee__list">
             {guarantee.items.map((item, i) => (
-              <motion.li
-                key={item.title}
-                className="owner-guarantee__item"
-                {...scrollIn(i)}
-              >
+              <motion.li key={item.title} className="owner-guarantee__item" {...scrollIn(i)}>
                 <span className="owner-guarantee__number" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
                 </span>

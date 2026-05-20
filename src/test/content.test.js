@@ -96,16 +96,19 @@ describe('content — section copy contract', () => {
     }
   })
 
-  it('selling page has intro and a numbered process', () => {
+  it('selling page has intro, six reasons and a listings section', () => {
     expect(selling.title).toBeTruthy()
     expect(selling.intro).toBeTruthy()
-    expect(Array.isArray(selling.process)).toBe(true)
-    expect(selling.process.length).toBeGreaterThan(0)
-    for (const step of selling.process) {
-      expect(step.number).toBeTruthy()
-      expect(step.title).toBeTruthy()
-      expect(step.body).toBeTruthy()
+    expect(selling.promise).toBeTruthy()
+    expect(Array.isArray(selling.reasons)).toBe(true)
+    expect(selling.reasons.length).toBeGreaterThan(0)
+    for (const reason of selling.reasons) {
+      expect(reason.title).toBeTruthy()
+      expect(reason.body).toBeTruthy()
     }
+    expect(selling.listings.heading).toBeTruthy()
+    expect(selling.listings.body).toBeTruthy()
+    expect(selling.listings.emptyMessage).toBeTruthy()
   })
 
   it('propertyManagement page has intro and a services grid', () => {
