@@ -69,8 +69,8 @@ export default function SellingPage() {
           <div className="service-showcase__copy">
             <span className="section-eyebrow">Presentation matters</span>
             <p className="service-showcase__lede">
-              Editorial-grade campaigns built around the rooms buyers fall for
-              &mdash; staged, photographed and launched to land hardest from day one.
+              Editorial-grade campaigns built around the rooms buyers fall for &mdash; staged,
+              photographed and launched to land hardest from day one.
             </p>
           </div>
         </div>

@@ -12,12 +12,7 @@ export default function CtaBanner({ imageless = false, image }) {
     >
       {!imageless && (
         <div className="cta-banner__media" aria-hidden="true">
-          <img
-            src={resolvedImage.src}
-            alt=""
-            className="cta-banner__image"
-            loading="lazy"
-          />
+          <img src={resolvedImage.src} alt="" className="cta-banner__image" loading="lazy" />
           <div className="cta-banner__veil" />
         </div>
       )}

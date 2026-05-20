@@ -64,9 +64,8 @@ export default function AboutPage() {
           <div className="about-showcase__copy">
             <span className="section-eyebrow">Homes we represent</span>
             <p className="about-showcase__lede">
-              Considered architecture, thoughtful interiors and the kind of details that turn
-              houses into homes &mdash; the standard we apply to every appraisal, listing and
-              campaign.
+              Considered architecture, thoughtful interiors and the kind of details that turn houses
+              into homes &mdash; the standard we apply to every appraisal, listing and campaign.
             </p>
           </div>
         </div>

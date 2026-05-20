@@ -9,9 +9,7 @@ const ICONS = { Home, Building2, FileText }
 
 export default function Services({ exclude }) {
   const scrollIn = useScrollIn()
-  const items = exclude
-    ? services.items.filter((item) => item.title !== exclude)
-    : services.items
+  const items = exclude ? services.items.filter((item) => item.title !== exclude) : services.items
   return (
     <section className="services section" aria-labelledby="services-heading">
       <div className="container">

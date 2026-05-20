@@ -98,9 +98,7 @@ export default function Testimonials() {
                   )}
                 </div>
 
-                <div
-                  className={`testimonials__text${expanded ? ' is-expanded' : ' is-clamped'}`}
-                >
+                <div className={`testimonials__text${expanded ? ' is-expanded' : ' is-clamped'}`}>
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
