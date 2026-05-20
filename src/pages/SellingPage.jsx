@@ -102,65 +102,89 @@ export default function SellingPage() {
                       </div>
                     </article>
                   ))
-                : items.map((p, i) => (
-                    <motion.article
-                      key={p.id ?? p.slug}
-                      className="service-listings__card"
-                      {...scrollIn(i)}
-                    >
-                      <div className="service-listings__media">
-                        {p.image ? (
-                          <img
-                            src={p.image}
-                            alt={p.imageAlt}
-                            loading="lazy"
-                            className="service-listings__image"
-                          />
-                        ) : (
-                          <div
-                            className="service-listings__image"
-                            style={{ background: 'var(--color-bg-alt)' }}
-                          />
-                        )}
-                        <span className="service-listings__status">{p.status}</span>
-                      </div>
-
-                      <div className="service-listings__body-block">
-                        <h3 className="service-listings__address">{p.address}</h3>
-                        <p className="service-listings__suburb">{p.suburb}</p>
-
-                        <div className="service-listings__meta">
-                          <span
-                            className="service-listings__feature"
-                            aria-label={`${p.beds} bedrooms`}
-                          >
-                            <Bed size={16} strokeWidth={1.6} aria-hidden="true" />
-                            <span>{p.beds}</span>
-                          </span>
-                          <span
-                            className="service-listings__feature"
-                            aria-label={`${p.baths} bathrooms`}
-                          >
-                            <Bath size={16} strokeWidth={1.6} aria-hidden="true" />
-                            <span>{p.baths}</span>
-                          </span>
-                          <span
-                            className="service-listings__feature"
-                            aria-label={`${p.parking} parking`}
-                          >
-                            <Car size={16} strokeWidth={1.6} aria-hidden="true" />
-                            <span>{p.parking}</span>
-                          </span>
-                          <span className="service-listings__price">{p.price}</span>
+                : items.map((p, i) => {
+                    const hasReaUrl = Boolean(p.reaUrl)
+                    const ctaLabel = hasReaUrl ? 'View on realestate.com.au' : 'Enquire'
+                    const linkAriaLabel = hasReaUrl
+                      ? `View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`
+                      : `Enquire about ${p.address}, ${p.suburb}`
+                    return (
+                      <motion.article
+                        key={p.id ?? p.slug}
+                        className="service-listings__card"
+                        {...scrollIn(i)}
+                      >
+                        <div className="service-listings__media">
+                          {p.image ? (
+                            <img
+                              src={p.image}
+                              alt={p.imageAlt}
+                              loading="lazy"
+                              className="service-listings__image"
+                            />
+                          ) : (
+                            <div
+                              className="service-listings__image"
+                              style={{ background: 'var(--color-bg-alt)' }}
+                            />
+                          )}
+                          <span className="service-listings__status">{p.status}</span>
                         </div>
 
-                        <Link to="/contact" className="service-listings__cta">
-                          <span>Enquire</span>
-                          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-                        </Link>
-                      </div>
-                    </motion.article>
-                  ))}
+                        <div className="service-listings__body-block">
+                          <h3 className="service-listings__address">{p.address}</h3>
+                          <p className="service-listings__suburb">{p.suburb}</p>
+
+                          <div className="service-listings__meta">
+                            <span
+                              className="service-listings__feature"
+                              aria-label={`${p.beds} bedrooms`}
+                            >
+                              <Bed size={16} strokeWidth={1.6} aria-hidden="true" />
+                              <span>{p.beds}</span>
+                            </span>
+                            <span
+                              className="service-listings__feature"
+                              aria-label={`${p.baths} bathrooms`}
+                            >
+                              <Bath size={16} strokeWidth={1.6} aria-hidden="true" />
+                              <span>{p.baths}</span>
+                            </span>
+                            <span
+                              className="service-listings__feature"
+                              aria-label={`${p.parking} parking`}
+                            >
+                              <Car size={16} strokeWidth={1.6} aria-hidden="true" />
+                              <span>{p.parking}</span>
+                            </span>
+                            <span className="service-listings__price">{p.price}</span>
+                          </div>
+
+                          {hasReaUrl ? (
+                            <a
+                              href={p.reaUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="service-listings__cta service-listings__cta--stretched"
+                              aria-label={linkAriaLabel}
+                            >
+                              <span>{ctaLabel}</span>
+                              <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                            </a>
+                          ) : (
+                            <Link
+                              to="/contact"
+                              className="service-listings__cta service-listings__cta--stretched"
+                              aria-label={linkAriaLabel}
+                            >
+                              <span>{ctaLabel}</span>
+                              <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                            </Link>
+                          )}
+                        </div>
+                      </motion.article>
+                    )
+                  })}
             </div>
           )}
         </div>

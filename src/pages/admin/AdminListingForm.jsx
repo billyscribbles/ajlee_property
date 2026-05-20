@@ -18,6 +18,7 @@ const EMPTY = {
   baths: 0,
   parking: 0,
   price: '',
+  rea_url: '',
   published: false,
   featured: false,
   images: [],
@@ -41,7 +42,6 @@ export default function AdminListingForm() {
   const [loading, setLoading] = useState(isEdit)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  const [slugTouched, setSlugTouched] = useState(isEdit)
 
   useEffect(() => {
     if (!isEdit) return
@@ -59,6 +59,7 @@ export default function AdminListingForm() {
           baths: row.baths ?? 0,
           parking: row.parking ?? 0,
           price: row.price ?? '',
+          rea_url: row.rea_url ?? '',
           published: Boolean(row.published),
           featured: Boolean(row.featured),
           images: Array.isArray(row.images) ? row.images : [],
@@ -79,10 +80,9 @@ export default function AdminListingForm() {
   }, [id, isEdit, navigate])
 
   const computedSlug = useMemo(() => {
-    if (slugTouched && form.slug) return form.slug
-    const base = slugify(`${form.address} ${form.suburb}`)
-    return base
-  }, [form.address, form.suburb, form.slug, slugTouched])
+    if (isEdit && form.slug) return form.slug
+    return slugify(`${form.address} ${form.suburb}`)
+  }, [isEdit, form.address, form.suburb, form.slug])
 
   function set(field, value) {
     setForm((f) => ({ ...f, [field]: value }))
@@ -94,7 +94,8 @@ export default function AdminListingForm() {
     setError('')
     const payload = {
       ...form,
-      slug: slugTouched && form.slug ? form.slug : computedSlug,
+      slug: computedSlug,
+      rea_url: form.rea_url.trim(),
       beds: Number(form.beds) || 0,
       baths: Number(form.baths) || 0,
       parking: Number(form.parking) || 0,
@@ -225,20 +226,22 @@ export default function AdminListingForm() {
               />
             </div>
 
-            <div className="admin-field">
-              <label className="admin-field__label" htmlFor="slug">
-                Slug
+            <div className="admin-field admin-form__full">
+              <label className="admin-field__label" htmlFor="rea_url">
+                realestate.com.au URL
               </label>
               <input
-                id="slug"
+                id="rea_url"
                 className="admin-input"
-                value={slugTouched ? form.slug : computedSlug}
-                onChange={(e) => {
-                  setSlugTouched(true)
-                  set('slug', slugify(e.target.value))
-                }}
-                placeholder="auto-generated from address + suburb"
+                type="url"
+                value={form.rea_url}
+                onChange={(e) => set('rea_url', e.target.value)}
+                placeholder="https://www.realestate.com.au/property-…"
               />
+              <p className="admin-field__hint">
+                Where the card opens when a visitor clicks it. Leave blank to fall back to the
+                contact page.
+              </p>
             </div>
 
             <div className="admin-field">

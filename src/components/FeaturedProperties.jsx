@@ -58,52 +58,80 @@ export default function FeaturedProperties() {
                   </div>
                 </article>
               ))
-            : items.map((p, i) => (
-                <motion.article key={p.id ?? p.slug} className="properties__card" {...scrollIn(i)}>
-                  <div className="properties__media">
-                    {p.image ? (
-                      <img
-                        src={p.image}
-                        alt={p.imageAlt}
-                        loading="lazy"
-                        className="properties__image"
-                      />
-                    ) : (
-                      <div
-                        className="properties__image"
-                        style={{ background: 'var(--color-bg-alt)' }}
-                      />
-                    )}
-                    <span className="properties__status">{p.status}</span>
-                  </div>
-
-                  <div className="properties__body">
-                    <h3 className="properties__address">{p.address}</h3>
-                    <p className="properties__suburb">{p.suburb}</p>
-
-                    <div className="properties__meta">
-                      <span className="properties__feature" aria-label={`${p.beds} bedrooms`}>
-                        <Bed size={16} strokeWidth={1.6} aria-hidden="true" />
-                        <span>{p.beds}</span>
-                      </span>
-                      <span className="properties__feature" aria-label={`${p.baths} bathrooms`}>
-                        <Bath size={16} strokeWidth={1.6} aria-hidden="true" />
-                        <span>{p.baths}</span>
-                      </span>
-                      <span className="properties__feature" aria-label={`${p.parking} parking`}>
-                        <Car size={16} strokeWidth={1.6} aria-hidden="true" />
-                        <span>{p.parking}</span>
-                      </span>
-                      <span className="properties__price">{p.price}</span>
+            : items.map((p, i) => {
+                const hasReaUrl = Boolean(p.reaUrl)
+                const ctaLabel = hasReaUrl ? 'View on realestate.com.au' : 'View Property'
+                const linkAriaLabel = hasReaUrl
+                  ? `View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`
+                  : `Enquire about ${p.address}, ${p.suburb}`
+                return (
+                  <motion.article
+                    key={p.id ?? p.slug}
+                    className="properties__card"
+                    {...scrollIn(i)}
+                  >
+                    <div className="properties__media">
+                      {p.image ? (
+                        <img
+                          src={p.image}
+                          alt={p.imageAlt}
+                          loading="lazy"
+                          className="properties__image"
+                        />
+                      ) : (
+                        <div
+                          className="properties__image"
+                          style={{ background: 'var(--color-bg-alt)' }}
+                        />
+                      )}
+                      <span className="properties__status">{p.status}</span>
                     </div>
 
-                    <Link to="/contact" className="properties__cta">
-                      <span>View Property</span>
-                      <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-                    </Link>
-                  </div>
-                </motion.article>
-              ))}
+                    <div className="properties__body">
+                      <h3 className="properties__address">{p.address}</h3>
+                      <p className="properties__suburb">{p.suburb}</p>
+
+                      <div className="properties__meta">
+                        <span className="properties__feature" aria-label={`${p.beds} bedrooms`}>
+                          <Bed size={16} strokeWidth={1.6} aria-hidden="true" />
+                          <span>{p.beds}</span>
+                        </span>
+                        <span className="properties__feature" aria-label={`${p.baths} bathrooms`}>
+                          <Bath size={16} strokeWidth={1.6} aria-hidden="true" />
+                          <span>{p.baths}</span>
+                        </span>
+                        <span className="properties__feature" aria-label={`${p.parking} parking`}>
+                          <Car size={16} strokeWidth={1.6} aria-hidden="true" />
+                          <span>{p.parking}</span>
+                        </span>
+                        <span className="properties__price">{p.price}</span>
+                      </div>
+
+                      {hasReaUrl ? (
+                        <a
+                          href={p.reaUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="properties__cta properties__cta--stretched"
+                          aria-label={linkAriaLabel}
+                        >
+                          <span>{ctaLabel}</span>
+                          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <Link
+                          to="/contact"
+                          className="properties__cta properties__cta--stretched"
+                          aria-label={linkAriaLabel}
+                        >
+                          <span>{ctaLabel}</span>
+                          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                        </Link>
+                      )}
+                    </div>
+                  </motion.article>
+                )
+              })}
         </div>
       </div>
     </section>

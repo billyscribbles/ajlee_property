@@ -1,6 +1,9 @@
 import { getSupabase, publicImageUrl } from './supabase.js'
 import { reportError } from './errorReporter.js'
 
+const LISTING_COLUMNS =
+  'id, slug, status, address, suburb, beds, baths, parking, price, rea_url, images, created_at'
+
 function toCard(row) {
   const images = Array.isArray(row.images) ? row.images : []
   const hero = images[0] ?? null
@@ -14,6 +17,7 @@ function toCard(row) {
     baths: row.baths ?? 0,
     parking: row.parking ?? 0,
     price: row.price ?? '',
+    reaUrl: row.rea_url ?? '',
     image: hero ? publicImageUrl(hero.path) : '',
     imageAlt: hero?.alt ?? `${row.address}, ${row.suburb}`,
     images,
@@ -25,7 +29,7 @@ export async function fetchFeaturedListings(limit = 3) {
   if (!supabase) return []
   const { data, error } = await supabase
     .from('listings')
-    .select('id, slug, status, address, suburb, beds, baths, parking, price, images, created_at')
+    .select(LISTING_COLUMNS)
     .eq('published', true)
     .eq('featured', true)
     .order('created_at', { ascending: false })
@@ -42,7 +46,7 @@ export async function fetchPublishedListings() {
   if (!supabase) return []
   const { data, error } = await supabase
     .from('listings')
-    .select('id, slug, status, address, suburb, beds, baths, parking, price, images, created_at')
+    .select(LISTING_COLUMNS)
     .eq('published', true)
     .order('created_at', { ascending: false })
   if (error) {
