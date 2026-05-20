@@ -47,15 +47,17 @@ export const site = {
   },
 
   social: {
-    facebook: 'https://facebook.com/ajleepropertygroup',
-    instagram: 'https://instagram.com/ajleepropertygroup',
-    linkedin: 'https://linkedin.com/company/ajleepropertygroup',
+    facebook: 'https://www.facebook.com/ajleePG/',
+    instagram: 'https://www.instagram.com/ajlee_au/',
+    whatsapp: 'https://wa.me/61414676420',
   },
 
   contact: {
-    email: 'hello@ajleepropertygroup.com.au',
-    phone: '03 9020 0300',
-    location: 'Level 2, 65–67 Main Street, Brighton VIC 3186',
+    email: 'enquiries@ajlee.com.au',
+    phone: '03 7042 9555',
+    location: 'Level 4, 830 Whitehorse Road, Box Hill VIC 3128',
+    mapEmbedSrc:
+      'https://www.google.com/maps?q=Level%204%2C%20830%20Whitehorse%20Road%2C%20Box%20Hill%20VIC%203128&output=embed',
   },
 
   seo: {

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
 import { site } from '../config/site.config.js'
+import WhatsAppIcon from './WhatsAppIcon.jsx'
 import './Footer.css'
 
 const SOCIAL_ICONS = {
   facebook: { Icon: Facebook, label: 'Facebook' },
   instagram: { Icon: Instagram, label: 'Instagram' },
+  whatsapp: { Icon: WhatsAppIcon, label: 'WhatsApp' },
   linkedin: { Icon: Linkedin, label: 'LinkedIn' },
   twitter: { Icon: Twitter, label: 'Twitter' },
 }

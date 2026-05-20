@@ -1,7 +1,14 @@
 import { useState } from 'react'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Facebook, Instagram } from 'lucide-react'
 import { site } from '../config/site.config.js'
+import WhatsAppIcon from './WhatsAppIcon.jsx'
 import './Contact.css'
+
+const SOCIAL_ICONS = {
+  facebook: { Icon: Facebook, label: 'Facebook' },
+  instagram: { Icon: Instagram, label: 'Instagram' },
+  whatsapp: { Icon: WhatsAppIcon, label: 'WhatsApp' },
+}
 
 export default function Contact() {
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
@@ -34,6 +41,9 @@ export default function Contact() {
     }
   }
 
+  const phoneHref = site.contact.phone ? `tel:${site.contact.phone.replace(/\s+/g, '')}` : null
+  const emailHref = site.contact.email ? `mailto:${site.contact.email}` : null
+
   return (
     <section className="contact section" id="contact">
       <div className="container contact__inner">
@@ -46,26 +56,55 @@ export default function Contact() {
               to listen first &mdash; and deliver beyond expectations.
             </p>
 
-            <ul className="contact__details">
-              {site.contact.phone && (
-                <li className="contact__detail">
-                  <Phone size={18} strokeWidth={1.5} aria-hidden="true" />
-                  <a href={`tel:${site.contact.phone.replace(/\s+/g, '')}`}>{site.contact.phone}</a>
-                </li>
-              )}
-              {site.contact.email && (
-                <li className="contact__detail">
-                  <Mail size={18} strokeWidth={1.5} aria-hidden="true" />
-                  <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-                </li>
-              )}
-              {site.contact.location && (
-                <li className="contact__detail">
-                  <MapPin size={18} strokeWidth={1.5} aria-hidden="true" />
-                  <address>{site.contact.location}</address>
-                </li>
-              )}
-            </ul>
+            {(phoneHref || emailHref) && (
+              <div className="contact__actions">
+                {phoneHref && (
+                  <a className="contact__action" href={phoneHref}>
+                    <Phone size={18} strokeWidth={1.5} aria-hidden="true" />
+                    <span className="contact__action-text">
+                      <span className="contact__action-label">Call us</span>
+                      <span className="contact__action-value">{site.contact.phone}</span>
+                    </span>
+                  </a>
+                )}
+                {emailHref && (
+                  <a className="contact__action" href={emailHref}>
+                    <Mail size={18} strokeWidth={1.5} aria-hidden="true" />
+                    <span className="contact__action-text">
+                      <span className="contact__action-label">Email us</span>
+                      <span className="contact__action-value">{site.contact.email}</span>
+                    </span>
+                  </a>
+                )}
+              </div>
+            )}
+
+            {site.contact.location && (
+              <div className="contact__address">
+                <MapPin size={18} strokeWidth={1.5} aria-hidden="true" />
+                <address>{site.contact.location}</address>
+              </div>
+            )}
+
+            <div className="contact__socials">
+              {Object.entries(site.social).map(([key, href]) => {
+                const meta = SOCIAL_ICONS[key]
+                if (!href || !meta) return null
+                const { Icon, label } = meta
+                return (
+                  <a
+                    key={key}
+                    href={href}
+                    className="contact__social"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                  >
+                    <Icon size={16} strokeWidth={1.7} />
+                  </a>
+                )
+              })}
+            </div>
           </div>
 
           <form className="contact__form" onSubmit={handleSubmit} noValidate>
@@ -111,6 +150,18 @@ export default function Contact() {
             </p>
           </form>
         </div>
+
+        {site.contact.mapEmbedSrc && (
+          <div className="contact__map">
+            <iframe
+              src={site.contact.mapEmbedSrc}
+              title={`${site.brand.name} — ${site.contact.location}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        )}
       </div>
     </section>
   )
