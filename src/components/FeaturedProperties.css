@@ -52,6 +52,7 @@
 }
 
 .properties__card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--color-bg-card);
@@ -181,6 +182,18 @@
   gap: 14px;
 }
 
+.properties__cta--stretched::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.properties__cta--stretched > * {
+  position: relative;
+  z-index: 2;
+}
+
 .properties .admin-skeleton {
   background: linear-gradient(
     90deg,
@@ -220,8 +233,31 @@
   }
   .properties__grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   .properties__price {
     margin-left: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .properties {
+    padding: 56px 0;
+  }
+  .properties__head {
+    margin-bottom: 28px;
+  }
+  .properties__body {
+    padding: 20px 18px 18px;
+  }
+  .properties__address {
+    font-size: 20px;
+  }
+  .properties__meta {
+    gap: 14px;
+  }
+  .properties__price {
+    width: 100%;
+    margin-left: 0;
   }
 }

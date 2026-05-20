@@ -422,6 +422,7 @@
 }
 
 .service-listings__card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--color-bg-card);
@@ -482,12 +483,13 @@
 
 .service-listings__address {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: clamp(20px, 4.6vw, 28px);
   font-weight: 500;
   color: #ffffff;
   margin: 0;
   letter-spacing: 0;
   line-height: 1.18;
+  word-break: break-word;
 }
 
 .service-listings__suburb {
@@ -551,6 +553,18 @@
   gap: 14px;
 }
 
+.service-listings__cta--stretched::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.service-listings__cta--stretched > * {
+  position: relative;
+  z-index: 2;
+}
+
 .service-listings__empty {
   font-family: var(--font-body);
   font-size: 15px;
@@ -607,6 +621,15 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .service-grid__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-process__list {
+    gap: 32px 40px;
+  }
+}
+
 @media (max-width: 880px) {
   .service-hero {
     padding: 136px 0 56px;
@@ -634,7 +657,41 @@
   .service-listings__body-block {
     padding: 24px 22px 22px;
   }
-  .service-listings__address {
+}
+
+@media (max-width: 600px) {
+  .service-hero {
+    padding: 120px 0 48px;
+  }
+  .service-intro {
+    padding: 0 0 48px;
+  }
+  .owner-portal,
+  .owner-guarantee,
+  .service-listings {
+    padding: 56px 0;
+  }
+  .service-process__step {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .service-process__number {
+    padding-top: 0;
+    font-size: 28px;
+  }
+  .owner-guarantee__item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .owner-guarantee__number {
+    padding-top: 0;
     font-size: 24px;
+  }
+  .service-listings__meta {
+    gap: 14px;
+  }
+  .service-listings__price {
+    margin-left: 0;
+    width: 100%;
   }
 }

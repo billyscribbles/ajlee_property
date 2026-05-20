@@ -129,3 +129,24 @@
     min-height: auto;
   }
 }
+
+@media (max-width: 600px) {
+  .testimonials {
+    padding: 64px 0;
+  }
+  .testimonials__top {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .testimonials__nav {
+    justify-self: flex-start;
+    gap: 12px;
+  }
+  .testimonials__nav-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .testimonials__footer {
+    gap: 12px;
+  }
+}

@@ -104,4 +104,10 @@
   .services__grid {
     grid-template-columns: 1fr;
   }
+  .services__card {
+    padding: 24px;
+  }
+  .services__title {
+    font-size: 22px;
+  }
 }

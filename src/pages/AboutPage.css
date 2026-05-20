@@ -84,6 +84,14 @@
   color: var(--color-muted);
 }
 
+@media (max-width: 1024px) {
+  .about-hero__pillars,
+  .about-hero__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
 @media (max-width: 768px) {
   .about-hero {
     padding: 136px 0 56px;
@@ -99,5 +107,20 @@
   }
   .about-hero__stat-value {
     font-size: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 120px 0 48px;
+  }
+  .about-hero__intro {
+    font-size: 16px;
+  }
+  .about-hero__pillar-title {
+    font-size: 20px;
+  }
+  .about-hero__stat-value {
+    font-size: 38px;
   }
 }

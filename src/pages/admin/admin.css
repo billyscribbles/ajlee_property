@@ -177,6 +177,14 @@
   color: var(--color-muted);
 }
 
+.admin-field__hint {
+  margin: 4px 0 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
 .admin-input,
 .admin-select,
 .admin-textarea {
@@ -258,10 +266,13 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--color-bg-card);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .admin-table {
   width: 100%;
+  min-width: 640px;
   border-collapse: collapse;
   font-family: var(--font-body);
   font-size: 14px;
@@ -371,6 +382,46 @@
   .admin-form {
     grid-template-columns: 1fr;
   }
+  .admin-card {
+    padding: 24px 20px;
+  }
+  .admin__topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .admin__actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .admin-form__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .admin-form__actions-right {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .admin-form__actions .admin-btn {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin {
+    padding: 40px 0 72px;
+  }
+  .admin__container {
+    padding: 0 16px;
+  }
+  .admin__title {
+    font-size: 26px;
+  }
+  .admin-uploader__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
 }
 
 /* ---------- Image uploader ---------- */
@@ -407,7 +458,7 @@
 
 .admin-uploader__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 16px;
   margin-top: 18px;
 }
