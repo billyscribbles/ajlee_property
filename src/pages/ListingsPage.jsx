@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowRight, Bed, Bath, Car } from 'lucide-react'
 import SEO from '../lib/seo.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
@@ -150,16 +149,8 @@ export default function ListingsPage() {
                               <span className="service-listings__price">{p.price}</span>
                             </div>
 
-                            <div className="service-listings__ctas">
-                              <Link
-                                to="/contact"
-                                className="service-listings__cta"
-                                aria-label={`Enquire about ${p.address}, ${p.suburb}`}
-                              >
-                                <span>Enquire</span>
-                                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-                              </Link>
-                              {hasReaUrl && (
+                            {hasReaUrl && (
+                              <div className="service-listings__ctas">
                                 <a
                                   href={p.reaUrl}
                                   target="_blank"
@@ -170,8 +161,8 @@ export default function ListingsPage() {
                                   <span>View on realestate.com.au</span>
                                   <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                                 </a>
-                              )}
-                            </div>
+                              </div>
+                            )}
                           </div>
                         </article>
                       )

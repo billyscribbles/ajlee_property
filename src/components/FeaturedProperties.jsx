@@ -102,16 +102,8 @@ export default function FeaturedProperties() {
                         <span className="properties__price">{p.price}</span>
                       </div>
 
-                      <div className="properties__ctas">
-                        <Link
-                          to="/contact"
-                          className="properties__cta"
-                          aria-label={`Enquire about ${p.address}, ${p.suburb}`}
-                        >
-                          <span>Enquire</span>
-                          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-                        </Link>
-                        {hasReaUrl && (
+                      {hasReaUrl && (
+                        <div className="properties__ctas">
                           <a
                             href={p.reaUrl}
                             target="_blank"
@@ -122,8 +114,8 @@ export default function FeaturedProperties() {
                             <span>View on realestate.com.au</span>
                             <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                           </a>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </motion.article>
                 )
