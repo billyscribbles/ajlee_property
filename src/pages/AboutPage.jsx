@@ -38,7 +38,7 @@ export default function AboutPage() {
       </section>
 
       <WhyChoose />
-      <MeetTheTeam />
+      <MeetTheTeam variant="long" />
       <Testimonials />
       <CtaBanner />
     </main>

@@ -5,8 +5,9 @@ import { team } from '../content/team.js'
 import { useScrollIn } from '../lib/motion.js'
 import './MeetTheTeam.css'
 
-export default function MeetTheTeam() {
+export default function MeetTheTeam({ variant = 'short' }) {
   const scrollIn = useScrollIn()
+  const useLongBio = variant === 'long'
 
   return (
     <section className="team section" aria-labelledby="team-heading">
@@ -44,7 +45,9 @@ export default function MeetTheTeam() {
               <div className="team__card-body">
                 <h3 className="team__name">{member.name}</h3>
                 <p className="team__role">{member.role}</p>
-                <p className="team__bio">{member.bio}</p>
+                <p className="team__bio">
+                  {(useLongBio && member.bioLong) || member.bio}
+                </p>
               </div>
             </motion.li>
           ))}
