@@ -28,15 +28,38 @@ export default function ListingMedia({
     setIndex(target)
   }
 
+  const advance = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setIndex((i) => (i + 1) % list.length)
+  }
+
   return (
     <div className={wrapperClassName}>
       {current ? (
-        <img
-          src={current.src}
-          alt={current.alt ?? imageAlt}
-          loading="lazy"
-          className={imageClassName}
-        />
+        hasMultiple ? (
+          <button
+            type="button"
+            className="listing-media__image-button"
+            onClick={advance}
+            tabIndex={-1}
+            aria-hidden="true"
+          >
+            <img
+              src={current.src}
+              alt={current.alt ?? imageAlt}
+              loading="lazy"
+              className={imageClassName}
+            />
+          </button>
+        ) : (
+          <img
+            src={current.src}
+            alt={current.alt ?? imageAlt}
+            loading="lazy"
+            className={imageClassName}
+          />
+        )
       ) : (
         <div className={imageClassName} style={{ background: 'var(--color-bg-alt)' }} />
       )}

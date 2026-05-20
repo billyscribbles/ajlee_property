@@ -61,10 +61,6 @@ export default function FeaturedProperties() {
               ))
             : items.map((p, i) => {
                 const hasReaUrl = Boolean(p.reaUrl)
-                const ctaLabel = hasReaUrl ? 'View on realestate.com.au' : 'View Property'
-                const linkAriaLabel = hasReaUrl
-                  ? `View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`
-                  : `Enquire about ${p.address}, ${p.suburb}`
                 return (
                   <motion.article
                     key={p.id ?? p.slug}
@@ -106,27 +102,28 @@ export default function FeaturedProperties() {
                         <span className="properties__price">{p.price}</span>
                       </div>
 
-                      {hasReaUrl ? (
-                        <a
-                          href={p.reaUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="properties__cta properties__cta--stretched"
-                          aria-label={linkAriaLabel}
-                        >
-                          <span>{ctaLabel}</span>
-                          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-                        </a>
-                      ) : (
+                      <div className="properties__ctas">
                         <Link
                           to="/contact"
-                          className="properties__cta properties__cta--stretched"
-                          aria-label={linkAriaLabel}
+                          className="properties__cta"
+                          aria-label={`Enquire about ${p.address}, ${p.suburb}`}
                         >
-                          <span>{ctaLabel}</span>
+                          <span>Enquire</span>
                           <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                         </Link>
-                      )}
+                        {hasReaUrl && (
+                          <a
+                            href={p.reaUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="properties__cta properties__cta--secondary"
+                            aria-label={`View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`}
+                          >
+                            <span>View on realestate.com.au</span>
+                            <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </motion.article>
                 )

@@ -1,3 +1,14 @@
+.listing-media__image-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 .listing-media__nav {
   position: absolute;
   top: 50%;

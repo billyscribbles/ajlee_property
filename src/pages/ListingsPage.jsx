@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Bed, Bath, Car } from 'lucide-react'
 import SEO from '../lib/seo.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
 import { fetchPublishedListings } from '../lib/listings.js'
-import { useScrollIn } from '../lib/motion.js'
 import ListingMedia from '../components/ListingMedia.jsx'
 import './ServicePage.css'
 
@@ -37,7 +35,6 @@ function groupByStatus(items) {
 const EMPTY_MESSAGE = 'New listings will appear here as they launch.'
 
 export default function ListingsPage() {
-  const scrollIn = useScrollIn()
   const [items, setItems] = useState(null)
 
   useEffect(() => {
@@ -56,21 +53,10 @@ export default function ListingsPage() {
     <main className="service-page">
       <SEO title="Listings" path="/listings" />
 
-      <section className="service-hero">
-        <div className="container service-hero__inner">
-          <span className="section-eyebrow service-hero__eyebrow">Current campaigns</span>
-          <h1 className="service-hero__title">
-            <span className="service-hero__title-line">Listings across</span>
-            <span className="service-hero__title-line">Melbourne&rsquo;s South East.</span>
-          </h1>
-          <p className="service-hero__intro">
-            Homes for sale, for rent, under offer and recently sold — grouped so you can find what
-            matters to you.
-          </p>
-        </div>
-      </section>
-
-      <section className="service-listings section" aria-labelledby="listings-heading">
+      <section
+        className="service-listings service-listings--top section"
+        aria-labelledby="listings-heading"
+      >
         <div className="container">
           <h2 id="listings-heading" className="sr-only">
             Listings
@@ -116,18 +102,10 @@ export default function ListingsPage() {
                     </span>
                   </h3>
                   <div className="service-listings__grid">
-                    {group.items.map((p, i) => {
+                    {group.items.map((p) => {
                       const hasReaUrl = Boolean(p.reaUrl)
-                      const ctaLabel = hasReaUrl ? 'View on realestate.com.au' : 'Enquire'
-                      const linkAriaLabel = hasReaUrl
-                        ? `View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`
-                        : `Enquire about ${p.address}, ${p.suburb}`
                       return (
-                        <motion.article
-                          key={p.id ?? p.slug}
-                          className="service-listings__card"
-                          {...scrollIn(i)}
-                        >
+                        <article key={p.id ?? p.slug} className="service-listings__card">
                           <ListingMedia
                             gallery={
                               p.gallery && p.gallery.length > 0
@@ -172,29 +150,30 @@ export default function ListingsPage() {
                               <span className="service-listings__price">{p.price}</span>
                             </div>
 
-                            {hasReaUrl ? (
-                              <a
-                                href={p.reaUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="service-listings__cta service-listings__cta--stretched"
-                                aria-label={linkAriaLabel}
-                              >
-                                <span>{ctaLabel}</span>
-                                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-                              </a>
-                            ) : (
+                            <div className="service-listings__ctas">
                               <Link
                                 to="/contact"
-                                className="service-listings__cta service-listings__cta--stretched"
-                                aria-label={linkAriaLabel}
+                                className="service-listings__cta"
+                                aria-label={`Enquire about ${p.address}, ${p.suburb}`}
                               >
-                                <span>{ctaLabel}</span>
+                                <span>Enquire</span>
                                 <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                               </Link>
-                            )}
+                              {hasReaUrl && (
+                                <a
+                                  href={p.reaUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="service-listings__cta service-listings__cta--secondary"
+                                  aria-label={`View ${p.address}, ${p.suburb} on realestate.com.au (opens in a new tab)`}
+                                >
+                                  <span>View on realestate.com.au</span>
+                                  <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+                                </a>
+                              )}
+                            </div>
                           </div>
-                        </motion.article>
+                        </article>
                       )
                     })}
                   </div>

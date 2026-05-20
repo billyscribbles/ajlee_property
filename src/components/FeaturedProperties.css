@@ -159,6 +159,14 @@
   letter-spacing: 0.01em;
 }
 
+.properties__ctas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 .properties__cta {
   display: inline-flex;
   align-items: center;
@@ -169,7 +177,6 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  align-self: flex-start;
   padding-bottom: 2px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.35);
   transition:
@@ -182,16 +189,13 @@
   gap: 14px;
 }
 
-.properties__cta--stretched::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.properties__cta--secondary {
+  color: var(--color-text-soft);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
 }
 
-.properties__cta--stretched > * {
-  position: relative;
-  z-index: 2;
+.properties__cta--secondary:hover {
+  color: #ffffff;
 }
 
 .properties .admin-skeleton {
