@@ -1,11 +1,15 @@
-import { useState, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import { Quote, ChevronLeft, ChevronRight, Star, ExternalLink } from 'lucide-react'
 import { testimonials } from '../content/testimonials.js'
 import './Testimonials.css'
 
+const AUTO_ADVANCE_MS = 3000
+
 export default function Testimonials() {
   const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [expanded, setExpanded] = useState(false)
   const total = testimonials.items.length
   const reduceMotion = useReducedMotion()
 
@@ -16,11 +20,40 @@ export default function Testimonials() {
     [total],
   )
 
+  const goTo = useCallback(
+    (next) => {
+      setIndex(((next % total) + total) % total)
+    },
+    [total],
+  )
+
+  // Collapse the quote whenever we switch reviews.
+  useEffect(() => {
+    setExpanded(false)
+  }, [index])
+
+  useEffect(() => {
+    if (reduceMotion || paused || expanded || total <= 1) return undefined
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % total)
+    }, AUTO_ADVANCE_MS)
+    return () => window.clearInterval(id)
+  }, [reduceMotion, paused, expanded, total, index])
+
   const item = testimonials.items[index]
   const stars = item.stars ?? 5
+  const paragraphs = item.quote.split('\n\n')
+  const source = testimonials.source
 
   return (
-    <section className="testimonials section" aria-labelledby="testimonials-heading">
+    <section
+      className="testimonials section"
+      aria-labelledby="testimonials-heading"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
       <div className="container">
         <div className="testimonials__top">
           <h2 id="testimonials-heading" className="section-eyebrow testimonials__eyebrow">
@@ -35,18 +68,16 @@ export default function Testimonials() {
           </div>
 
           <div className="testimonials__quote-wrap">
-            <AnimatePresence mode="wait" initial={false}>
+            <AnimatePresence initial={false}>
               <motion.blockquote
                 key={index}
                 className="testimonials__quote"
-                initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-                animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-                exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.7, ease: 'easeInOut' }}
               >
-                <p className="testimonials__text">{item.quote}</p>
-                <footer className="testimonials__footer">
-                  <cite className="testimonials__author">— {item.author}</cite>
+                <div className="testimonials__meta">
                   <div
                     className="testimonials__stars"
                     role="img"
@@ -62,7 +93,31 @@ export default function Testimonials() {
                       />
                     ))}
                   </div>
-                  {item.role && <span className="testimonials__role">{item.role}</span>}
+                  {source?.label && (
+                    <span className="testimonials__source">{source.label} review</span>
+                  )}
+                </div>
+
+                <div
+                  className={`testimonials__text${expanded ? ' is-expanded' : ' is-clamped'}`}
+                >
+                  {paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  className="testimonials__expand"
+                  onClick={() => setExpanded((e) => !e)}
+                  aria-expanded={expanded}
+                >
+                  {expanded ? 'See less' : 'See more'}
+                </button>
+
+                <footer className="testimonials__footer">
+                  <cite className="testimonials__author">— {item.author}</cite>
+                  {item.date && <span className="testimonials__date">{item.date}</span>}
                 </footer>
               </motion.blockquote>
             </AnimatePresence>
@@ -86,6 +141,34 @@ export default function Testimonials() {
               <ChevronRight size={18} strokeWidth={1.8} aria-hidden="true" />
             </button>
           </div>
+        </div>
+
+        <div className="testimonials__bottom">
+          <div className="testimonials__dots" role="tablist" aria-label="Choose a review">
+            {testimonials.items.map((t, i) => (
+              <button
+                key={i}
+                type="button"
+                role="tab"
+                aria-selected={i === index}
+                aria-label={`Show review ${i + 1} of ${total}`}
+                className={`testimonials__dot${i === index ? ' is-active' : ''}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+
+          {source?.url && (
+            <a
+              className="testimonials__readall"
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {source.readAllLabel ?? `Read all reviews on ${source.label}`}
+              <ExternalLink size={14} strokeWidth={1.8} aria-hidden="true" />
+            </a>
+          )}
         </div>
       </div>
     </section>
