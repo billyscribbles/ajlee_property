@@ -92,11 +92,21 @@ export default function Footer() {
         <span className="footer__copyright">{footer.copyright}</span>
         <div className="footer__legal">
           <Link to="/privacy" className="footer__legal-btn">
-            Privacy Policy
+            Privacy
           </Link>
           <Link to="/terms" className="footer__legal-btn">
-            Terms &amp; Conditions
+            Terms
           </Link>
+          {footer.credit && (
+            <a
+              href={footer.credit.href}
+              className="footer__legal-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {footer.credit.label} {footer.credit.name}
+            </a>
+          )}
         </div>
       </div>
     </footer>

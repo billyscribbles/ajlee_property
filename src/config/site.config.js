@@ -53,6 +53,11 @@ export const site = {
       },
     ],
     copyright: '© 2026 AJ Lee Property Group. All rights reserved.',
+    credit: {
+      label: 'site by',
+      name: 'Onrai Studio',
+      href: 'https://www.onraistudio.com',
+    },
   },
 
   social: {
