@@ -7,8 +7,11 @@ import './Services.css'
 
 const ICONS = { Home, Building2, FileText }
 
-export default function Services() {
+export default function Services({ exclude }) {
   const scrollIn = useScrollIn()
+  const items = exclude
+    ? services.items.filter((item) => item.title !== exclude)
+    : services.items
   return (
     <section className="services section" aria-labelledby="services-heading">
       <div className="container">
@@ -23,7 +26,7 @@ export default function Services() {
         </div>
 
         <div className="services__grid">
-          {services.items.map((item, i) => {
+          {items.map((item, i) => {
             const Icon = ICONS[item.icon] || Home
             return (
               <motion.article key={item.title} className="services__card" {...scrollIn(i)}>

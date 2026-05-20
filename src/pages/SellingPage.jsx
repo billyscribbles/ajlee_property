@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import SEO from '../lib/seo.jsx'
 import Services from '../components/Services.jsx'
-import Testimonials from '../components/Testimonials.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
 import { useScrollIn } from '../lib/motion.js'
 import { selling } from '../content/selling.js'
@@ -101,8 +100,7 @@ export default function SellingPage() {
         </div>
       </section>
 
-      <Services />
-      <Testimonials />
+      <Services exclude="Selling" />
       <CtaBanner
         image={{
           src: '/images/home-walnut-kitchen.png',

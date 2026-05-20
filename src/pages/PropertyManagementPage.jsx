@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import SEO from '../lib/seo.jsx'
 import Services from '../components/Services.jsx'
-import Testimonials from '../components/Testimonials.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
 import { useScrollIn } from '../lib/motion.js'
 import { propertyManagement } from '../content/propertyManagement.js'
@@ -169,8 +168,7 @@ export default function PropertyManagementPage() {
         </div>
       </section>
 
-      <Services />
-      <Testimonials />
+      <Services exclude="Property Management" />
       <CtaBanner
         image={{
           src: '/images/home-spa-bathroom.png',
