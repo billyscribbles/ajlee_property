@@ -6,7 +6,9 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
+import Awards from '../components/Awards.jsx'
 import { site } from '../config/site.config.js'
+import { awards } from '../content/awards.js'
 
 const renderNavbar = () =>
   render(
@@ -47,5 +49,30 @@ describe('Footer — renders contact and copyright from site.config', () => {
     renderFooter()
     expect(screen.getByText(site.contact.email)).toBeInTheDocument()
     expect(screen.getByText(site.contact.phone)).toBeInTheDocument()
+  })
+})
+
+describe('Awards — renders both finalist seals from content', () => {
+  const renderAwards = (variant) =>
+    render(
+      <MemoryRouter>
+        <Awards variant={variant} />
+      </MemoryRouter>,
+    )
+
+  it('renders every seal image and caption in the compact variant', () => {
+    renderAwards('compact')
+    for (const seal of awards.seals) {
+      expect(screen.getByAltText(seal.alt)).toBeInTheDocument()
+      expect(screen.getByText(seal.label)).toBeInTheDocument()
+    }
+  })
+
+  it('exposes the recognition anchor in the full variant', () => {
+    const { container } = renderAwards('full')
+    expect(container.querySelector('#recognition')).toBeInTheDocument()
+    for (const seal of awards.seals) {
+      expect(screen.getByAltText(seal.alt)).toBeInTheDocument()
+    }
   })
 })

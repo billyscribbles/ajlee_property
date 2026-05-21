@@ -1,5 +1,6 @@
 import SEO from '../lib/seo.jsx'
 import MeetTheTeam from '../components/MeetTheTeam.jsx'
+import Awards from '../components/Awards.jsx'
 import Testimonials from '../components/Testimonials.jsx'
 import CtaBanner from '../components/CtaBanner.jsx'
 import { about } from '../content/about.js'
@@ -50,6 +51,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <Awards variant="full" />
 
       <section className="about-showcase" aria-label="A glimpse of what we represent">
         <div className="container about-showcase__inner">

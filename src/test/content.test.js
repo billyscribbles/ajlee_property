@@ -13,6 +13,7 @@ import { about } from '../content/about.js'
 import { selling } from '../content/selling.js'
 import { propertyManagement } from '../content/propertyManagement.js'
 import { legal } from '../content/legal.js'
+import { awards } from '../content/awards.js'
 
 describe('content — section copy contract', () => {
   it('hero has multi-line headlines, both CTAs, and a hero image', () => {
@@ -117,6 +118,23 @@ describe('content — section copy contract', () => {
       expect(s.title).toBeTruthy()
       expect(s.body).toBeTruthy()
     }
+  })
+
+  it('awards has seals with images and both placement copies', () => {
+    expect(awards.eyebrow).toBeTruthy()
+    expect(Array.isArray(awards.seals)).toBe(true)
+    expect(awards.seals.length).toBeGreaterThan(0)
+    for (const seal of awards.seals) {
+      expect(seal.src).toBeTruthy()
+      expect(seal.alt).toBeTruthy()
+      expect(seal.label).toBeTruthy()
+    }
+    expect(awards.home.title).toBeTruthy()
+    expect(awards.home.body).toBeTruthy()
+    expect(awards.home.link.label).toBeTruthy()
+    expect(awards.home.link.to).toBeTruthy()
+    expect(awards.about.title).toBeTruthy()
+    expect(awards.about.intro).toBeTruthy()
   })
 
   it('legal has privacy and terms, each with sections', () => {
