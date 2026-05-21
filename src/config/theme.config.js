@@ -14,6 +14,7 @@ export const theme = {
     'accent-dark': '#e5e5e5',
     'accent-light': '#2a2a2e',
     'accent-glow': 'rgba(255, 255, 255, 0.08)',
+    star: '#f2c14e',
     border: 'rgba(255, 255, 255, 0.08)',
     'border-strong': 'rgba(255, 255, 255, 0.22)',
     dark: '#000000',

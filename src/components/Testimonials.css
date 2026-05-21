@@ -136,7 +136,7 @@
 .testimonials__stars {
   display: inline-flex;
   gap: 2px;
-  color: #ffffff;
+  color: var(--color-star);
 }
 
 .testimonials__date {
