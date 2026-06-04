@@ -57,7 +57,13 @@ export default function Awards({ variant = 'compact' }) {
                 loading="lazy"
                 className="awards__seal-img"
               />
-              <span className="awards__seal-label">{seal.label}</span>
+              <span className="awards__seal-label">
+                {seal.label.split(' – ').map((part) => (
+                  <span className="awards__seal-label-line" key={part}>
+                    {part}
+                  </span>
+                ))}
+              </span>
             </li>
           ))}
         </motion.ul>

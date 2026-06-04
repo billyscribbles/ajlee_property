@@ -126,6 +126,10 @@
   color: var(--color-muted);
 }
 
+.awards__seal-label-line {
+  display: block;
+}
+
 @media (max-width: 880px) {
   .awards__inner {
     grid-template-columns: 1fr;

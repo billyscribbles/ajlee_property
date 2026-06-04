@@ -64,7 +64,10 @@ describe('Awards — renders both finalist seals from content', () => {
     renderAwards('compact')
     for (const seal of awards.seals) {
       expect(screen.getByAltText(seal.alt)).toBeInTheDocument()
-      expect(screen.getByText(seal.label)).toBeInTheDocument()
+      // Labels render across one line per " – " separated segment.
+      for (const part of seal.label.split(' – ')) {
+        expect(screen.getAllByText(part).length).toBeGreaterThan(0)
+      }
     }
   })
 
