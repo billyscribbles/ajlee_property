@@ -75,6 +75,9 @@
   color: var(--color-text-soft);
   max-width: 640px;
   margin: 0;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .about-pillars {
@@ -105,6 +108,9 @@
   line-height: 1.7;
   color: var(--color-text-soft);
   margin: 0;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .about-pillars__stats {
@@ -171,6 +177,9 @@
   line-height: 1.4;
   color: #ffffff;
   margin: 16px 0 0;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 @media (max-width: 1024px) {

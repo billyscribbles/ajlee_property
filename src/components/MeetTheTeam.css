@@ -107,6 +107,9 @@
   line-height: 1.65;
   color: var(--color-text-soft);
   margin: 8px 0 0;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .team__cta-wrap {

@@ -42,6 +42,9 @@
   color: var(--color-text-soft);
   margin: 0 0 48px;
   max-width: 420px;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .why-choose__features {
