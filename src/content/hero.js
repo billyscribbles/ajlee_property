@@ -1,5 +1,5 @@
 export const hero = {
-  headlineLines: ['Real estate', 'made personal.', 'Every client, every time.'],
+  headlineLines: ['Real estate', 'made personal.', 'Every client,', 'every time.'],
   subheadline: "Proudly serving Melbourne's South East with personalised property expertise.",
   primaryCta: { label: 'Book an Appraisal', to: '/contact' },
   secondaryCta: { label: 'View Properties', to: '/listings' },
