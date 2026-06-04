@@ -87,6 +87,10 @@
   margin: 0;
 }
 
+.service-hero__intro-line {
+  display: block;
+}
+
 /* Optional showcase strip used inside service pages */
 .service-showcase {
   padding: 16px 0 96px;
@@ -156,6 +160,9 @@
   line-height: 1.75;
   color: var(--color-text-soft);
   margin: 0 0 24px;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .service-intro__promise {
@@ -289,6 +296,9 @@
   line-height: 1.7;
   color: var(--color-text-soft);
   margin: 0;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 /* Owner portal */

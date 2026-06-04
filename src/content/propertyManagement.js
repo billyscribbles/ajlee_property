@@ -1,8 +1,8 @@
 export const propertyManagement = {
   eyebrow: '',
-  title: 'Leasing\nwith AJ.',
+  title: 'Leasing with AJ.',
   intro:
-    'Managing an investment property shouldn’t feel stressful — and with the right team, it isn’t.',
+    'Managing an investment property shouldn’t feel stressful —\nand with the right team, it isn’t.',
   intro2:
     'At AJ Lee Property Group, we take a proactive, hands-on approach from day one. We don’t believe in set-and-forget management. We take the time to understand your property, your goals, and the level of service you expect. From there, we create a tailored management strategy focused on protecting your asset, attracting quality tenants, and maximising long-term returns.',
   intro3:

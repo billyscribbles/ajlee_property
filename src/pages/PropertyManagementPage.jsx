@@ -40,7 +40,13 @@ export default function PropertyManagementPage() {
               </span>
             ))}
           </h1>
-          <p className="service-hero__intro">{propertyManagement.intro}</p>
+          <p className="service-hero__intro">
+            {propertyManagement.intro.split('\n').map((line) => (
+              <span key={line} className="service-hero__intro-line">
+                {line}
+              </span>
+            ))}
+          </p>
         </div>
       </section>
 
