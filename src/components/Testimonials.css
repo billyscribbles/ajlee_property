@@ -34,6 +34,7 @@
   color: rgba(255, 255, 255, 0.55);
   align-self: flex-start;
   margin-top: 4px;
+  transform: scaleX(-1);
 }
 
 .testimonials__quote-wrap {
