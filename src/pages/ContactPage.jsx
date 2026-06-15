@@ -5,7 +5,11 @@ import './ContactPage.css'
 export default function ContactPage() {
   return (
     <main className="contact-page">
-      <SEO title="Contact" path="/contact" />
+      <SEO
+        title="Contact"
+        path="/contact"
+        description="Get in touch with AJ Lee Property Group in Box Hill VIC. Call 03 7042 9555 or book a free property appraisal across Melbourne's South East."
+      />
 
       <section className="contact-hero">
         <div className="contact-hero__media" aria-hidden="true">

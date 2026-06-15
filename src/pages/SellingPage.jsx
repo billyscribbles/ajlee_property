@@ -11,7 +11,11 @@ export default function SellingPage() {
 
   return (
     <main className="service-page">
-      <SEO title="Selling" path="/selling" />
+      <SEO
+        title="Selling"
+        path="/selling"
+        description="Sell your Melbourne home the right way with AJ Lee Property Group — tailored campaigns, clear guidance and local expertise across Melbourne's South East."
+      />
 
       <section className="service-hero service-hero--with-media">
         <div className="service-hero__media" aria-hidden="true">

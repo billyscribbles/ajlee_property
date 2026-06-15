@@ -2,27 +2,37 @@ import { Helmet } from 'react-helmet-async'
 import { site } from '../config/site.config.js'
 
 // Organization structured data — built once from site.config so search engines
-// get a machine-readable brand record. Becomes LocalBusiness automatically when
-// a contact address/phone is present.
+// get a machine-readable brand record. Becomes a RealEstateAgent (a
+// LocalBusiness subtype) automatically when a contact address/phone is present.
 const organizationLd = (() => {
   const sameAs = Object.values(site.social || {}).filter(Boolean)
   const hasLocation = Boolean(site.contact?.location || site.contact?.phone)
   const schema = {
     '@context': 'https://schema.org',
-    '@type': hasLocation ? 'LocalBusiness' : 'Organization',
+    '@type': hasLocation ? 'RealEstateAgent' : 'Organization',
     name: site.brand.name,
     url: site.seo.siteUrl,
     description: site.seo.description,
   }
-  if (site.brand.logoSrc) schema.logo = `${site.seo.siteUrl}${site.brand.logoSrc}`
+  if (site.brand.logoSrc) {
+    const logo = `${site.seo.siteUrl}${site.brand.logoSrc}`
+    schema.logo = logo
+    schema.image = `${site.seo.siteUrl}${site.seo.ogImage}`
+  }
   if (sameAs.length) schema.sameAs = sameAs
-  if (site.contact?.email) {
-    schema.contactPoint = {
-      '@type': 'ContactPoint',
-      contactType: 'customer support',
-      email: site.contact.email,
-      ...(site.contact.phone && { telephone: site.contact.phone }),
+  if (site.contact?.phone) schema.telephone = site.contact.phone
+  if (site.contact?.email) schema.email = site.contact.email
+  const addr = site.contact?.address
+  if (addr) {
+    schema.address = {
+      '@type': 'PostalAddress',
+      streetAddress: addr.street,
+      addressLocality: addr.suburb,
+      addressRegion: addr.region,
+      postalCode: addr.postcode,
+      addressCountry: addr.country,
     }
+    schema.areaServed = 'Melbourne, Victoria, Australia'
   }
   return JSON.stringify(schema)
 })()

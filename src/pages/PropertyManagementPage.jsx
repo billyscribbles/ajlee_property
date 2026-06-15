@@ -13,7 +13,11 @@ export default function PropertyManagementPage() {
 
   return (
     <main className="service-page">
-      <SEO title="Property Management" path="/property-management" />
+      <SEO
+        title="Property Management"
+        path="/property-management"
+        description="Boutique property management built on strong client relationships. AJ Lee Property Group cares for your Melbourne investment as if it were our own."
+      />
 
       <section className="service-hero service-hero--with-media">
         <div className="service-hero__media" aria-hidden="true">

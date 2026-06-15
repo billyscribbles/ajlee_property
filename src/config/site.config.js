@@ -70,6 +70,14 @@ export const site = {
     email: 'enquiries@ajlee.com.au',
     phone: '03 7042 9555',
     location: 'Level 4, 830 Whitehorse Road, Box Hill VIC 3128',
+    // Structured form of `location`, used to build PostalAddress JSON-LD.
+    address: {
+      street: 'Level 4, 830 Whitehorse Road',
+      suburb: 'Box Hill',
+      region: 'VIC',
+      postcode: '3128',
+      country: 'AU',
+    },
     mapEmbedSrc:
       'https://www.google.com/maps?q=Level%204%2C%20830%20Whitehorse%20Road%2C%20Box%20Hill%20VIC%203128&output=embed',
   },
@@ -79,7 +87,7 @@ export const site = {
     titleTemplate: '%s · AJ Lee Property Group',
     description:
       'Boutique Melbourne real estate agency serving the South East with personalised selling, property management and appraisals.',
-    siteUrl: import.meta.env.VITE_SITE_URL || 'https://ajleepropertygroup.com.au',
+    siteUrl: import.meta.env.VITE_SITE_URL || 'https://ajlee.com.au',
     ogImage: '/brand/og-image.png',
     locale: 'en_AU',
   },

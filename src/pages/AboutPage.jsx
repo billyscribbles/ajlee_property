@@ -9,7 +9,11 @@ import './AboutPage.css'
 export default function AboutPage() {
   return (
     <main className="about">
-      <SEO title="About Us" path="/about" />
+      <SEO
+        title="About Us"
+        path="/about"
+        description="Meet AJ Lee Property Group — a boutique Box Hill real estate agency taking a focused, transparent and results-driven approach to selling and managing Melbourne homes."
+      />
 
       <section className="about-hero">
         <div className="about-hero__media" aria-hidden="true">

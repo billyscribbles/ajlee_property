@@ -61,10 +61,13 @@ export default function ListingsPage() {
   const filterEmpty = activeFilter && grouped && grouped.length === 0
   const seoTitle = activeFilter ? `${activeFilter.label} Listings` : 'Listings'
   const seoPath = activeFilter ? `/listings/${activeFilter.slug}` : '/listings'
+  const seoDescription = activeFilter
+    ? `Browse ${activeFilter.label.toLowerCase()} properties with AJ Lee Property Group across Melbourne's South East.`
+    : "Browse homes for sale and for rent with AJ Lee Property Group — current listings plus recently sold and leased properties across Melbourne's South East."
 
   return (
     <main className="service-page">
-      <SEO title={seoTitle} path={seoPath} />
+      <SEO title={seoTitle} path={seoPath} description={seoDescription} />
 
       <section
         className="service-listings service-listings--top section"
