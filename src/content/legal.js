@@ -1,6 +1,10 @@
 // Privacy + terms text. Replace with formal legal copy before launch.
 // Each entry renders as a section with heading + paragraphs.
 
+import { site } from '../config/site.config'
+
+const { email } = site.contact
+
 export const legal = {
   privacy: {
     title: 'Privacy Policy',
@@ -20,11 +24,11 @@ export const legal = {
       },
       {
         heading: 'Your choices',
-        body: 'You can request access to, correction of, or deletion of your personal data at any time by emailing us at hello@ajleepropertygroup.com.au.',
+        body: `You can request access to, correction of, or deletion of your personal data at any time by emailing us at ${email}.`,
       },
       {
         heading: 'Contact',
-        body: 'Questions about this policy? Email us at hello@ajleepropertygroup.com.au — we respond within one business day.',
+        body: `Questions about this policy? Email us at ${email} — we respond within one business day.`,
       },
     ],
   },
